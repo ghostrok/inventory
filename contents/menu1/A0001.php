@@ -15,6 +15,7 @@ $row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong);
 $totl_cnt		= $row_cnt[0]['totl_cnt'];
 
 $now_url		= "A0001.php";
+$write_url		= "A0001_write.php";
 $excel_url		= "fn.excel.customer.php";
 $page			= $_GET['page'];
 
@@ -131,9 +132,9 @@ $dong	= $master_dao->selectPostCode('dong');
 		<td><input type="checkbox" name="u_idx[]" value="10936" /></td>
 		 -->
 		<td><?=$num?></td>
-		<td><?=$row[$i]['sales_num']?></td>
-		<td><?=$row[$i]['ceo_nm']?></td>
-		<td><a href="A0001_write.php?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>	
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['sales_num']?></a></td>
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['ceo_nm']?></a></td>
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>	
 		<td><?=$row[$i]['use_yn']?></td>
 		<td><?=$row[$i]['regist_num']?></td>
 		<td><?=$row[$i]['tel_num']?></td>
@@ -290,11 +291,15 @@ $dong	= $master_dao->selectPostCode('dong');
 	}
 
 	function fn_excel_input() {
-
 		$('#popup').bPopup();
 	}
 
+	function fn_excel_input_close() {
+		$('#popup').bPopup().close();
+	}
+	
 	function fn_upload() {
+		$("#form_excel").attr("target", "ifrm");
 		$("#form_excel").submit();
 		
 	}

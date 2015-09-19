@@ -35,6 +35,8 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
     		       $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate)
 */    
     
+    $affect_cnt = 0;
+    
 	for($row=3; $row<= $highestRow; ++ $row) {
       	for($col=0; $col<$highestColumnIndex; ++$col) {
        		$cell 	= $worksheet->getCellByColumnAndRow($col, $row);
@@ -58,10 +60,17 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
       	
       	// DB입력 
       	if(!empty($cust_type) && !empty($cust_nm)) {
-	      	$master_dao->insertCustomer($cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate);
+	      	$res = @$master_dao->insertCustomer($cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate);
+	      	
+	      	if($res == 1) {
+		      	$affect_cnt ++;
+	      	}
+	      	
       	}
       	
 	}
+	
+	echo "<script>alert('$affect_cnt 개의 엑셀이 반영되었습니다.'); parent.location.reload();</script>";
 
 	
             

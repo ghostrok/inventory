@@ -11,6 +11,10 @@ $master_dao = new MasterDAO();
 // 구,동 주소표시
 $gugun	= $master_dao->selectPostCode('gugun');
 
+if($cmd == 'edit') {
+	$row = $master_dao->selectCustomerSingle($uid);
+	//req(u, $row);
+}
 
 ?>
 
@@ -34,9 +38,9 @@ $gugun	= $master_dao->selectPostCode('gugun');
 
 <!-- Begin of Form -->
 
-<form name="form1" method=post action="" id="form1" enctype="multipart/form-data">	
+<form name="form1" method="post" action="" id="form1" enctype="multipart/form-data">	
 <input type="hidden" name="cmd" 	 		 value="<?=$cmd?>" />
-<input type="hidden" name="uid" 	 		 value="" />
+<input type="hidden" name="uid" 	 		 value="<?=$row[0]['uid']?>" />
 <input type="hidden" name="file_category" 	 value="" />
 <input type="hidden" name="tbl_nm" 		 	 value= />
 <input type="hidden" name="ret_page" 		 value="" />
@@ -50,36 +54,36 @@ $gugun	= $master_dao->selectPostCode('gugun');
 
 			<tr class=td_white>
 				<td width="80px"><b>판매소번호</b></td>
-				<td><input type='text' name='sales_num' size='20' value='' /></td>
+				<td><input type='text' name='sales_num' size='20' value='<?=$row[0]['sales_num']?>' /></td>
 			</tr>
 			
 			<tr class=td_white>
 				<td width="80px"><b>상호명</b></td>
-				<td><input type='text' name='cust_nm' size='20' value='' /></td>
+				<td><input type='text' name='cust_nm' size='20' value='<?=$row[0]['cust_nm']?>' /></td>
 			</tr>
 			
 			<tr class=td_white>
 				<td width="80px"><b>사업자번호</b></td>
-				<td><input type='text' name='regist_num' size='20' value='' /></td>
+				<td><input type='text' name='regist_num' size='20' value='<?=$row[0]['regist_num']?>' /></td>
 				<td width="80px"><b>사업자전화</b></td>
-				<td><input type='text' name='tel_num' size='20' value='' /></td>
+				<td><input type='text' name='tel_num' size='20' value='<?=$row[0]['tel_num']?>' /></td>
 			</tr>
 			
 			<tr class=td_white>
 				<td width="80px"><b>대표자명</b></td>
-				<td><input type='text' name='ceo_nm' size='20' value='' /></td>
+				<td><input type='text' name='ceo_nm' size='20' value='<?=$row[0]['ceo_nm']?>' /></td>
 				<td width="80px"><b>대표자전화</b></td>
-				<td><input type='text' name='ceo_tel_num' size='20' value='' /></td>
+				<td><input type='text' name='ceo_tel_num' size='20' value='<?=$row[0]['ceo_tel_num']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
 				<td width="80px"><b>신주소</b></td>
-				<td><input type='text' name='address_new' size='50' value='' /></td>
+				<td><input type='text' name='address_new' size='50' value='<?=$row[0]['address_new']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
 				<td width="80px"><b>구주소</b></td>
-				<td><input type='text' name='address' size='50' value='' /></td>
+				<td><input type='text' name='address' size='50' value='<?=$row[0]['address']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
@@ -87,7 +91,7 @@ $gugun	= $master_dao->selectPostCode('gugun');
 				<td>
 					<select name=area>
 						<?php for($i=0; $i<count($gugun); $i++) { ?>
-						<option value="<?=$gugun[$i]['gugun']?>"><?=$gugun[$i]['gugun']?></option>
+						<option value="<?=$gugun[$i]['gugun']?>" <? if($row[0]['area'] == $gugun[$i]['gugun']) { echo "selected";}?>><?=$gugun[$i]['gugun']?></option>
 						<?php }?>
 						
 					</select>				
@@ -96,57 +100,29 @@ $gugun	= $master_dao->selectPostCode('gugun');
 
 			<tr class=td_white>
 				<td width="80px"><b>지정일자</b></td>
-				<td><input type='text' name='applydate' id="datepicker1"  size='10' value='' /></td>
+				<td><input type='text' name='applydate' id="datepicker1"  size='10' value='<?=$row[0]['applydate']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
 				<td width="80px"><b>변경일자</b></td>
-				<td><input type='text' name='moddate' id="datepicker2"  size='10' value='' /></td>
+				<td><input type='text' name='moddate' id="datepicker2"  size='10' value='<?=$row[0]['moddate']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
 				<td><b>영업상태</b></td>
 				<td>
-					<input type=radio name=use_yn value='Y' checked="checked" />정상  
-					<input type=radio name=use_yn value='N' />폐업
+					<input type=radio name=use_yn value='Y' <? if($row[0]['use_yn'] == 'Y') {?>  checked="checked" <?}?> />정상  
+					<input type=radio name=use_yn value='N' <? if($row[0]['use_yn'] == 'N') {?>  checked="checked" <?}?> />폐업
 				</td>
 			</tr>
 
 			<tr class=td_white>
 				<td><b>변경사유</b></td>
 				<td>
-		            <textarea name="moddate_rsn" rows="8" cols="60"></textarea>
+		            <textarea name="moddate_rsn" rows="8" cols="60"><?=$row[0]['moddate_rsn']?></textarea>
 				</td>
 			</tr>
 
-			
-			<!-- 
-			<tr class=td_white>
-				<td>노출선택</td>
-				<td>
-					<input type=radio name=expose value='1' checked="checked" />노출  
-					<input type=radio name=expose value='0' />노출안함
-				</td>
-			</tr>
-			 -->	
-			 
-			<!-- 
-			<tr class=td_white>
-				<td>파일</td>
-				<td>
-					<dl class="editMod">
-						<dd class="source">
-							<div class="fileAttach">
-							<input type="file" class="file" name="input_file[]" id="input_file"  />
-							<p>
-								<span class="filename" style="width:370px;"></span>
-							</p>
-							</div>
-						</dd>
-					</dl>				 
-				</td>
-			</tr>			
-			 -->
 			 
 		</table>			
 	</td>
@@ -160,10 +136,15 @@ $gugun	= $master_dao->selectPostCode('gugun');
 			<tr>
 				<td align="center"><input type="button" value="목록으로" onclick="location.href='A0001.php';"></input></td>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<td align="center"><input type="button" value="삭제하기" onclick="chk_write_del();"></input></td>
+				<td align="center"><input type="button" value="삭제하기" onclick="chk_write_del('<?=$row[0]['uid']?>');"></input></td>
+				
+				<?php if($cmd == 'edit') {?>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td align="center"><input type="button" value="수정하기" onclick="chk_edit_form();"></input></td>				
+				<?php } else {?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<td align="center"><input type="button" value="등록하기" onclick="chk_write_form();"></input></td>
-				
+				<?php }?>
 			</tr>
 	</table>		
 </cener>
@@ -283,28 +264,110 @@ $("#express1").bind("click", function() {
 	{
 		var err = '';
 	
-	
-		if( $("input[name='subject']").val() == '')
+		if( $("input[name='sales_num']").val() == '')
 		{
-			err += " - 제목란이 비어있습니다. \r\n";
+			err += " - 판매소번호가 비어있습니다. \n";
 		}
-
-			
-							
+	
+		if( $("input[name='cust_nm']").val() == '')
+		{
+			err += " - 상호명이 비어있습니다. \n";
+		}
+	
+		if( $("input[name='regist_num']").val() == '')
+		{
+			err += " - 사업자번호가 비어있습니다. \n";
+		}
+	
+		if( $("input[name='tel_num']").val() == '')
+		{
+			err += " - 사업자전화가 비어있습니다. \n";
+		}
+		
+		if( $("input[name='ceo_nm']").val() == '')
+		{
+			err += " - 대표자명이 비어있습니다. \n";
+		}
+		
+		if( $("input[name='ceo_tel_num']").val() == '')
+		{
+			err += " - 대표자 전화번호가 비어있습니다. \n";
+		}
+	
+		if( $("input[name='address_new']").val() == '')
+		{
+			err += " - 신주소가 비어있습니다. \n";
+		}
+	
+		if( $("input[name='address']").val() == '')
+		{
+			err += " - 주소가 비어있습니다. \n";
+		}
+	
+		if( $("input[name='applydate']").val() == '')
+		{
+			err += " - 지정일자가 비어있습니다. \n";
+		}
+	
+		if( $("input[name='moddate']").val() == '')
+		{
+			err += " - 변경일자가 비어있습니다. \n";
+		}
+		
+		if( $("textarea[name='moddate_rsn']").val() == '')
+		{
+			err += " - 변경사유가 비어있습니다. \n";
+		}
+	
+		
 		if(err =='')
 		{	
 			$("input[name='cmd']").val('edit');
-			$('#form1').attr('action', 'board_process.php');
+			$('#form1').attr('action', 'multi_proc.php');
 			$('#form1').attr('target', 'ifrm');
 			$('#form1').submit();
-			
-		} 
+		}
+		 
 			else 
 		{
-			var msg = err + "\r\n - 위와 같은 에러가 발생했습니다. \r\n" ;
+			var msg = err + "\n - 위와 같은 에러가 발생했습니다. \r\n" ;
 			alert(msg);
 		}
 	}
+
+	
+	function chk_write_del(uid) {
+
+		var err = '';
+
+		if (confirm("[" + $("input[name='cust_nm']").val() + "] 의 정보를 삭제 하시겠습니까?")){
+			
+			if( $("input[name='cmd']").val() == '')
+			{
+				err += " - 고유아이디가 없습니다. \n";
+			}
+		
+			
+			if(err =='')
+			{	
+				$("input[name='cmd']").val('del');
+				$('#form1').attr('action', 'multi_proc.php');
+				$('#form1').attr('target', 'ifrm');
+				$('#form1').submit();
+			}
+			 
+				else 
+			{
+				var msg = err + "\n - 위와 같은 에러가 발생했습니다. \r\n" ;
+				alert(msg);
+			}
+		} else {
+
+			//alert('취소되었습니다.');
+			
+		}
+	}
+
 
 
 	function chk_reply_form()

@@ -157,6 +157,34 @@ class MasterDAO extends DAO
 		return $ret;
 	}
 	
+	
+	public function selectCustomerSingle($uid) {
+	
+		$qry  = null;
+	
+		$qry .= " SELECT * FROM tb_customer WHERE uid = :uid ";
+		
+		$stmt	= $this->db->prepare($qry);
+		
+		$stmt->bindValue(':uid',   	$uid,		PDO::PARAM_INT);
+	
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$res	= $stmt->execute();
+	
+		$idx 	= 0;
+		$ret 	= array();
+	
+		while($rs =  $stmt->fetch())
+		{
+			foreach($rs as $key => $value)
+			{
+				$ret[$idx][$key] = $rs[$key];
+			}
+			$idx++;
+		}
+		return $ret;
+	}
+	
 
 	/**
 	 * @param unknown $cmd
@@ -213,12 +241,12 @@ class MasterDAO extends DAO
 	public function insertCustomer($cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate)
 	{
 		$qry  = null;
-		$qry .= " insert tb_customer 																					";
+		$qry .= " INSERT tb_customer 																					";
 		$qry .= " (																										";
 		$qry .= "   cust_type, sales_num, cust_nm, regist_num, tel_num, ceo_nm, ceo_tel_num,  							"; 
 		$qry .= "   address, address_new, area, use_yn, applydate, moddate_rsn, regdate, moddate						";
 		$qry .= "  ) 																									";	
-		$qry .= " values 																								";
+		$qry .= " VALUES 																								";
 		$qry .= " (																										";
 		$qry .= "   :cust_type, :sales_num, :cust_nm, :regist_num, :tel_num, :ceo_nm, :ceo_tel_num, 					"; 
 		$qry .= "   :address, :address_new, :area, :use_yn, :applydate, :moddate_rsn, now(), now() 						";
@@ -254,7 +282,8 @@ class MasterDAO extends DAO
 				
 			$stmt->execute();
 			$this->db->commit();
-				
+			$affected_cnt = $stmt->rowCount();
+			
 		} catch (Exception $e) {
 				
 			$this->db->rollBack();
@@ -266,10 +295,100 @@ class MasterDAO extends DAO
 	
 		}
 	
-		return $ret;
+		return $affected_cnt;
 	}
 	
 	
+	/**
+	 * @param unknown $idx
+	 * @return unknown
+	 * 
+	 * 지정판매소 수정 
+	 */
+	public function updateCustomer($uid, $cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate)
+	{
+		$qry  = null;
+		
+		$qry .= " UPDATE tb_customer SET ";
+		$qry .= " cust_type = :cust_type, sales_num = :sales_num, cust_nm = :cust_nm, regist_num = :regist_num, tel_num = :tel_num, ceo_nm = :ceo_nm, ceo_tel_num = :ceo_tel_num, 	";
+		$qry .= " address = :address , address_new = :address_new, area = :area, use_yn = :use_yn, applydate = :applydate, moddate_rsn = :moddate_rsn 								";
+		$qry .= " WHERE uid = :uid  																																				";
+		
+		$this->db->beginTransaction();
+	
+		$stmt	= $this->db->prepare($qry);
+	
+		$stmt->bindValue(':uid'			, $uid,   		PDO::PARAM_INT);
+		$stmt->bindValue(':cust_type'	, $cust_type,   PDO::PARAM_STR);
+		$stmt->bindValue(':sales_num'	, $sales_num,   PDO::PARAM_STR);
+		$stmt->bindValue(':cust_nm'		, $cust_nm,   	PDO::PARAM_STR);
+		$stmt->bindValue(':regist_num'	, $regist_num,  PDO::PARAM_STR);
+		$stmt->bindValue(':tel_num'		, $tel_num, 	PDO::PARAM_STR);
+		$stmt->bindValue(':ceo_nm'		, $ceo_nm, 		PDO::PARAM_STR);
+		$stmt->bindValue(':ceo_tel_num'	, $ceo_tel_num,	PDO::PARAM_STR);
+		
+		$stmt->bindValue(':address'		, $address,   	PDO::PARAM_STR);
+		$stmt->bindValue(':address_new'	, $address_new, PDO::PARAM_STR);
+		$stmt->bindValue(':area'		, $area,   		PDO::PARAM_STR);
+		$stmt->bindValue(':use_yn'		, $use_yn,   	PDO::PARAM_STR);
+		$stmt->bindValue(':applydate'	, $applydate,   PDO::PARAM_STR);
+		$stmt->bindValue(':moddate_rsn'	, $moddate_rsn, PDO::PARAM_STR);
+		
+		
+		try {
+				
+			$stmt->execute();
+			$this->db->commit();
+			$affected_cnt = $stmt->rowCount();
+			
+		} catch (Exception $e) {
+				
+			$this->db->rollBack();
+			echo "Failed: " . $e->getMessage();
+				
+			$msg = $e->getTrace();
+			Log::debug($msg);
+			Log::ErrorDispatcher();
+	
+		}
+	
+		return $affected_cnt;
+	}
+	
+	
+	public function deleteCustomer($uid) {
+		
+		$qry  = null;
+		
+		$qry .= " DELETE FROM tb_customer 	";
+		$qry .= " WHERE uid = :uid 			";
+		
+		$this->db->beginTransaction();
+		
+		$stmt	= $this->db->prepare($qry);
+		
+		$stmt->bindValue(':uid'			, $uid,   		PDO::PARAM_INT);
+		
+		try {
+		
+			$stmt->execute();
+			$this->db->commit();
+			$affected_cnt = $stmt->rowCount();
+				
+		} catch (Exception $e) {
+		
+			$this->db->rollBack();
+			echo "Failed: " . $e->getMessage();
+		
+			$msg = $e->getTrace();
+			Log::debug($msg);
+			Log::ErrorDispatcher();
+		
+		}
+		
+		return $affected_cnt;		
+		
+	}
 	
 	public function getTotalCount ()
 	{

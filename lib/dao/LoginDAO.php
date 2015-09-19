@@ -54,6 +54,44 @@ class LoginDAO extends DAO
 	}
 	
 	
+		
+	public function updatePw($mem_id, $mem_pw) {
+	
+		$qry  = null;
+	
+		$qry .= " UPDATE tb_mem SET	passwd = :mem_pw	 	";
+		$qry .= " WHERE mem_id = :mem_id					";
+	
+		$this->db->beginTransaction();
+	
+		$stmt	= $this->db->prepare($qry);
+	
+		$stmt->bindValue(':mem_id'			, $mem_id,   		PDO::PARAM_STR);
+		$stmt->bindValue(':mem_pw'			, $mem_pw,   		PDO::PARAM_STR);
+	
+		try {
+	
+			$stmt->execute();
+			$this->db->commit();
+			$affected_cnt = $stmt->rowCount();
+	
+		} catch (Exception $e) {
+	
+			$this->db->rollBack();
+			echo "Failed: " . $e->getMessage();
+	
+			$msg = $e->getTrace();
+			Log::debug($msg);
+			Log::ErrorDispatcher();
+	
+		}
+	
+		return $affected_cnt;
+	
+	}
+	
+	
+	
 	
 	public function getTotalCount ()
 	{

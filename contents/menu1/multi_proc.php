@@ -18,13 +18,29 @@ $master_dao = new MasterDAO();
 	if($cmd == "" || $cmd == "write") {
 		
 		$cust_type = 'A';
-		$master_dao->insertCustomer($cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate);
+		$res = $master_dao->insertCustomer($cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate);
+
+		if($res == 1) {
+			echo "<script>alert('입력되었습니다.'); history.back(-1);</script>";
+		}
 		
 	} else if($cmd == "edit") {
 		
+		//echo "AA->".$use_yn;
+		
+		$res = $master_dao->updateCustomer($uid, $cust_type, $sales_num, $cust_nm, $regist_num, $tel_num, $ceo_nm, $ceo_tel_num, $address, $address_new, $area, $use_yn, $applydate, $moddate_rsn, $regdate, $moddate);
+		
+		echo "res:".$res;
+		
+		if($res == 1) {
+			echo "<script>alert('수정되었습니다.'); history.back(-1);</script>";
+		}
 		
 	} else if($cmd == "del") {
-		
+		$res = $master_dao->deleteCustomer($uid);
+		if($res == 1) {
+			echo "<script>alert('삭제되었습니다.'); parent.location.href = 'A0001.php'; </script>";
+		}		
 		
 	} else {
 		
