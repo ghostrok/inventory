@@ -28,10 +28,25 @@ class MasterDAO extends DAO
 	
 	
 	
+	/**
+	 * @param unknown $from
+	 * @param unknown $scale
+	 * @param unknown $sch_gu
+	 * @param unknown $sch_dong
+	 * @param unknown $order
+	 * @return Ambigous <multitype:, unknown>
+	 */
 	public function selectCustomer($from, $scale, $sch_gu, $sch_dong, $order) {
 		
 		$qry  = null;
+		
 		$qry .= " SELECT * FROM tb_customer WHERE 1=1 ";
+		
+
+		if(!empty($from) && !empty($scale))
+		{
+			$qry .= " limit :from , :scale ";
+		}		
 		
 		if(!empty($sch_gu))
 		{
@@ -48,19 +63,32 @@ class MasterDAO extends DAO
 		} else {
 			$qry .= " ORDER BY $order DESC ";
 		}
-		
-		if($from !=='' && $scale !=='')
-		{
-			$qry .= " LIMIT $from , $scale ";
-		}
-		
+
+		/*
+		*/
+	
 		$stmt	= $this->db->prepare($qry);
 		
-		$stmt->bindValue(':from',   	$from,		PDO::PARAM_STR);
-		$stmt->bindValue(':scale',   	$scale,		PDO::PARAM_STR);
-		$stmt->bindValue(':sch_gu',   	$sch_gu,	PDO::PARAM_STR);
-		$stmt->bindValue(':sch_dong', 	$sch_dong,	PDO::PARAM_STR);
-		$stmt->bindValue(':order',   	$order,		PDO::PARAM_STR);
+		echo $qry; 
+		
+		// Binding Options 
+		if(!empty($from) && !empty($scale)) {
+			$stmt->bindValue(':from',   	$from,		PDO::PARAM_INT);
+			$stmt->bindValue(':scale',   	$scale,		PDO::PARAM_INT);
+		}
+		
+		if(!empty($sch_gu)) {
+			$stmt->bindValue(':sch_gu',   	$sch_gu,	PDO::PARAM_STR);
+		}
+		
+		if(!empty($sch_dong)) {
+			$stmt->bindValue(':sch_dong', 	$sch_dong,	PDO::PARAM_STR);
+		}
+		
+		if(!empty($order)) {
+			$stmt->bindValue(':order',   	$order,		PDO::PARAM_STR);
+		}
+		
 
 		
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
