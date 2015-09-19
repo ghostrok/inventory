@@ -3,7 +3,14 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/lib/config/config.php");
 include_once ($LIB_DIR."/config/config.php");
 include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
-$login_dao = new LoginDAO();
+include_once ($SMARTY_HOME."/MasterDAO.php");
+
+$login_dao 	= new LoginDAO();
+$master_dao = new MasterDAO();
+
+// 구,동 주소표시
+$gugun	= $master_dao->selectPostCode('gugun');
+
 
 ?>
 
@@ -79,10 +86,10 @@ $login_dao = new LoginDAO();
 				<td width="80px"><b>구역</b></td>
 				<td>
 					<select name=area>
-						<option value="" selected>구선택</option>
-						<option value="user_id">북구</option>
-						<option value="user_id">북구</option>
-						<option value="user_id">북구</option>
+						<?php for($i=0; $i<count($gugun); $i++) { ?>
+						<option value="<?=$gugun[$i]['gugun']?>"><?=$gugun[$i]['gugun']?></option>
+						<?php }?>
+						
 					</select>				
 				</td>
 			</tr>
@@ -151,9 +158,12 @@ $login_dao = new LoginDAO();
 <cener>
 	<table align="center">
 			<tr>
-				<td align="center"><input type="button" value="목록으로" onclick="history.back(-1);"></input></td>
+				<td align="center"><input type="button" value="목록으로" onclick="location.href='A0001.php';"></input></td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td align="center"><input type="button" value="삭제하기" onclick="chk_write_del();"></input></td>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<td align="center"><input type="button" value="등록하기" onclick="chk_write_form();"></input></td>
+				
 			</tr>
 	</table>		
 </cener>

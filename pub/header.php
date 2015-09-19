@@ -18,6 +18,31 @@
 <script type="text/javascript" src="/js/common/jquery.ui.core.js"></script> 
 <script type="text/javascript" src="/js/common/jquery.ui.widget.js"></script> 
 <script type="text/javascript" src="/js/common/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="/js/common/jquery.bpopup.min.js"></script>
+
+
+<!-- bPopup Style -->
+<style type="text/css">
+.Pstyle {
+	opacity: 0;
+	display: none;
+	position: relative;
+	width: auto;
+	border: 5px solid #fff;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.b-close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding: 5px;
+	display: inline-block;
+	cursor: pointer;
+}
+</style>
+
 
 </head>
 <body>

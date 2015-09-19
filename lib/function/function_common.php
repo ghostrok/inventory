@@ -355,6 +355,11 @@ function alert_msg( $msg, $cmd="", $url="" ) {
 								</td>
 
  */	
+	
+	
+	
+	
+/*	
 	function page_show($page,$total_page,$zone_scale,$filename,$link)
 	{
 		global $img_url;
@@ -488,7 +493,7 @@ function alert_msg( $msg, $cmd="", $url="" ) {
 		return $page_go;
 	}	
 
-			
+*/			
 
 	function page_show_root($page,$total_page,$zone_scale,$filename,$link)
 	{

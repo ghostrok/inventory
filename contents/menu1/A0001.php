@@ -5,20 +5,24 @@ include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/CommonDAO.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
 include_once ($SMARTY_HOME."/MasterDAO.php");
+include_once "../../common/page.php";
+include_once "../../plugin/PHPExcel/PHPExcel.php";
 
 $login_dao 	= new LoginDAO();
 $master_dao = new MasterDAO();
 
+$row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong);
+$totl_cnt		= $row_cnt[0]['totl_cnt'];
 
+$now_url		= "A0001.php";
+$excel_url		= "fn.excel.customer.php";
 $page			= $_GET['page'];
-$list_num 		= 10;	//상품리스트 출력개수
-$list_zone_num 	= 10;	//상품리스트 페이지 그룹수
 
-$total_num 		= $total_cnt;
-$scale 			= 20;
-$list_zone_num 	= 10;
+//$total_num 		= $totl_cnt;
+$scale 			= 20;	// 페이지당 갯수
+$list_zone_num 	= 10;	// 페이지의 넘버갯수
 $zone_scale 	= $list_zone_num ;
-$total_page 	= ceil($total_num/$scale);
+$total_page 	= ceil($totl_cnt/$scale);
 
 
 //===========================
@@ -29,11 +33,19 @@ list($begin, $page) = page_begin($page, $total_page, $scale);
 //===========================
 //정렬순서 정하기
 //===========================
+$opt 			= "su=1";
+$show_pages 	= page_show($page, $total_page, $zone_scale, $now_url, $opt);
 
-$fname 	= "A0001.php" ;
-$opt 	= "cmd=list";
-$pages 	= page_show($page, $total_page, $zone_scale, $fname, $opt);
-$row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
+// 메인쿼리
+$row 			= $master_dao->selectCustomer($begin, $scale, $sch_gu, $sch_dong, $order);
+
+
+// 구,동 주소표시
+$gugun	= $master_dao->selectPostCode('gugun');
+$dong	= $master_dao->selectPostCode('dong');
+
+//req(p);
+
 ?>
 
 <? include "../../pub/header.php"; ?>
@@ -53,29 +65,29 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 	</tr>
 </table>
 
-<form name="form1" id="form1" method="post" action="member_list.php">
+<form name="form1" id="form1" method="post" action="<?=$now_url?>">
 <input type="hidden" name="cmd"  id="cmd"    value="" />
 <input type="hidden" name="uid"  id="c_uid"  value="" />
-<input type="hidden" name="ref_page" value="member_list.php" />
+<input type="hidden" name="ret_url" value="" />
 
 <table  width=100% border=0 cellspacing=1 cellpadding=2 bgcolor=#f2f2f2 style="border-color: red">
 	<tr>
 		<td>
-			<select name=item1>
+			<select name="sch_gu" id="sch_gu">
 				<option value="" selected>구선택</option>
-				<option value="user_id">북구</option>
-				<option value="user_id">북구</option>
-				<option value="user_id">북구</option>
+				<?php for($i=0; $i<count($gugun); $i++) { ?>
+				<option value="<?=$gugun[$i]['gugun']?>"><?=$gugun[$i]['gugun']?></option>
+				<?php }?>
 			</select>
 
-			<select name=item2>
+			<select name="sch_dong" id="sch_dong">
 				<option value="" selected>동선택</option>
-				<option value="user_id">전농동</option>
-				<option value="user_id">전농동</option>
-				<option value="user_id">전농동</option>
+				<?php for($i=0; $i<count($dong); $i++) { ?>
+				<option value="<?=$dong[$i]['dong']?>"><?=$dong[$i]['dong']?></option>
+				<?php }?>				
 			</select>
 			
-			<input type=button value="지정판매소 검색" onclick="javascript:queryCheck();" class="button_50" />
+			<input type=button value="지정판매소 검색" onclick="javascript:fn_submit();" class="button_50" />
 			<input type=button value=전체보기 onclick="location.href='<?=$_SERVER['PHP_SELF']?>'" class="button_70" />			
 		</td>
 	</tr>
@@ -83,7 +95,8 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 
 <table align="right">
 	<tr>
-		<td><input type="button" value=입력 onclick="location.href='A0001_write.php';" class="button_70" /></td>
+		<td><input type="button" value=단일입력 onclick="location.href='A0001_write.php';" class="button_70" /></td>
+		<td><input type="button" value=엑셀입력 onclick="fn_excel_input();" class="button_70" /></td>
 		<td><input type="button" value=엑셀출력 onclick="fn_excel_output();" class="button_70" /></td>
 	</tr>
 </table>
@@ -106,12 +119,18 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 	</tr>
 	
 	<?php 
+		
+		$num = ($totl_cnt - ($scale*($page-1)) ) ;
+
 		for($i=0; $i<count($row); $i++) {
 	?>
 	
 	<tr bgcolor="#FFFFFF" align=center style="height:23px;" onmouseover="this.bgColor='#EEEEEE'" onmouseout="this.bgColor='#FFFFFF'">							
-		<td><input type="checkbox" name="u_idx[]" value="10936" /></td>
 		
+		<!-- 
+		<td><input type="checkbox" name="u_idx[]" value="10936" /></td>
+		 -->
+		<td><?=$num?></td>
 		<td><?=$row[$i]['sales_num']?></td>
 		<td><?=$row[$i]['ceo_nm']?></td>
 		<td><a href="A0001_write.php?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>	
@@ -140,6 +159,7 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 	</tr>
 	
 	<?php 
+		$num--;
 		}
 	?>
 	
@@ -149,10 +169,45 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 </form>
 
 
+
+
+
+	<!-- 엑셀업로드 시작 -->
+	<div id="popup" class="Pstyle">
+
+		<span class="b-close">[X]</span>
+
+		<div class="content" style="height: auto; width: auto;">
+
+		※ 엑셀입력폼을 다운로드 후 업로드하시면 됩니다.
+		
+		<table>
+			<tr>
+				<td><input type="button" value="셈플다운" onclick="fn_sample_down();"><br /></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<form id="form_excel" name="form_excel" action="fn.excel.customer.insert.php" method="post" enctype="multipart/form-data">		
+		<input type="file" name="excel_file" value="" id="excel_file"/>
+		<input type="button" value="업로드" onclick="fn_upload();"/>
+		
+		</form>
+
+				 
+		</div>
+	</div>
+	<!-- 엑셀업로드 끝 -->
+	        
+
+
+
 <p style="margin-top:1px" />
 
 	<!-- 페이징 -->
-	<?php include "../../common/page.php"; ?>
+	<?=$show_pages?>
 	<!-- 페이징 -->  
 
 <script type="text/javascript">
@@ -226,21 +281,38 @@ $row 	= $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order);
 
 	function fn_excel_output()
 	{
-		$("#cmd").val('aaa');
-		//$("#form").attr("target", "ifrm");
-		$("#form1").attr("action", "excel_member_export.php");
+		$("#cmd").val('excel');
+		$("#form").attr("target", "ifrm");
+		$("#sch_gu").val('<?=$sch_gu?>');
+		$("#sch_dong").val('<?=$sch_dong?>');
+		$("#form1").attr("action", "<?=$excel_url?>");
 		$("#form1").submit();
 	}
 
-	function queryCheck()
+	function fn_excel_input() {
+
+		$('#popup').bPopup();
+	}
+
+	function fn_upload() {
+		$("#form_excel").submit();
+		
+	}
+
+	function fn_sample_down() {
+		location.href = "/upload/sample/sample_customer.xls";
+	}
+	
+	
+	function fn_submit()
 	{
-	
-		    if(!document.form1.s_que.value){
-		   	alert('검색어를 입력하세요');
-		   	return false;
-		    }
-	
-		document.form1.submit();
+
+		$("#form1").attr("action", "<?=$now_url?>");
+
+		//$("#sch_gu").val('<?=$sch_gu?>');
+		//$("#sch_dong").val('<?=$sch_dong?>');
+		
+		$("#form1").submit();
 	}  
 
 	function dateSelect1(docForm,selectIndex) 
