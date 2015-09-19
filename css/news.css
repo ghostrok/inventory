@@ -1,0 +1,148 @@
+.left_menu{
+background : url(../img/news/left_title.gif)  no-repeat top; 
+width : 170px; 
+height : 41px;
+vertical-align : top; 
+padding : 41px 0 0 0; 
+}
+
+.con_title01{
+background : url(../img/news/title01.gif)  no-repeat top left; 
+}
+.con_title02{
+background : url(../img/news/title02.gif)  no-repeat top left; 
+}
+.con_title03{
+background : url(../img/news/title03.gif)  no-repeat top left; 
+}
+.con_title04{
+background : url(../img/news/title04.gif)  no-repeat top left; 
+}
+.con_title05{
+background : url(../img/news/title05.gif)  no-repeat top left; 
+}
+.con_title06{
+background : url(../img/news/title06.gif)  no-repeat top left; 
+}
+
+/* 게시판 */
+.bbs_blue {
+background-color : #3b749f;
+height : 2px;
+}
+.bbs_text_no {
+background-color : #f7f7f7;
+width : 72px ; 
+height : 31px;
+color : #555555; 
+font-weight : bold; 
+text-align:center;
+}
+.bbs_text_title {
+background-color : #f7f7f7;
+height : 31px;
+color : #555555; 
+font-weight : bold; 
+text-align:center;
+}
+.bbs_text_date {
+background-color : #f7f7f7;
+width : 125px ; 
+height : 31px;
+color : #555555; 
+font-weight : bold; 
+text-align:center;
+}
+.bbs_text_name {
+background-color : #f7f7f7;
+width : 92px ; 
+height : 31px;
+color : #555555; 
+font-weight : bold; 
+text-align:center;
+}
+.bbs_black {
+background-color : #201f1f; 
+height :1px;
+}
+.bbs_line {
+background-color : #cccccc; 
+height:1px;
+}
+.bbs_no {
+font-family : Verdana,돋움; 
+color : #656565; 
+font-size : 11px; 
+text-align : center; 
+height : 31px;
+}
+.bbs_name {
+text-align : center;
+}
+.bbs_link {
+padding : 2px 0 0 10px;
+}
+.bbs_page {
+color : #f00909; 
+font-weight : bold; 
+text-align : center; 
+height : 77px;
+}
+a.page_no:link,a.page_no:visited,a.page_no:active {
+color : #313035; 
+text-decoration : none 
+}
+a.page_no:hover {
+color : #f00909;
+text-decoration : underline 
+}
+.bbs_btn {
+padding : 0 0 0 20px; 
+height:77px;
+}
+
+.bbs_view_title {
+padding : 14px 10px 12px 10px; 
+color : #3b749f; 
+font-size : 14px;
+font-weight : bold; 
+}
+.bbs_view_line {
+background-color : #dfdfdf; 
+height : 1px;
+}
+.bbs_view_text {
+padding : 0 0 0 10px; 
+color : #cacaca; 
+height : 30px;
+}
+.bbs_view_name {
+color : #656565;
+}
+.bbs_view_data {
+padding : 0 0 0 10px; 
+height : 30px;
+}
+.bbs_view_date {
+font-family : Verdana,돋움; 
+font-size : 11px; 
+color :  #656565; 
+}
+.bbs_view_con {
+padding : 20px 20px 20px 20px; 
+color : #656565; 
+}
+
+.bbs_btn_l {
+padding : 0 0 0 20px; 
+height : 77px;
+}
+.bbs_btn_r {
+padding : 0 20px 0 0; 
+text-align : right; 
+height : 77px;
+}
+.bbs_btn_c {
+text-align : center; 
+height : 77px;
+}

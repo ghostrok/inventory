@@ -1,0 +1,2 @@
+class AsdController < ApplicationController
+end

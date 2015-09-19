@@ -1,0 +1,270 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>FusionCharts Documentation</title>
+<link rel="stylesheet" href="Style.css" type="text/css" />
+</head>
+
+<body>
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td><h2 class="pageHeader">Combining FusionCharts, RoR and JavaScript (dataURL) method </h2></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>FusionCharts v3 offers tremendous integration capabilities with JavaScript. You can easily use FusionCharts and JavaScript to create client side dynamic charts. </p>
+        <p>Here, we'll see the JavaScript + URL method - where we ask the chart to fetch new data from server and update itself, without incurring any page refreshes. The entire application resides in a single page which makes it a seamless experience for your end viewers.</p>
+      <p><strong>Before you proceed with the contents in this page, we strictly recommend you to please go through the sections &quot;How FusionCharts works?&quot; and &quot;Basic Examples&quot;, as we'll directly use a lot of concepts defined in those sections.</strong></p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">All code discussed here is present in <br>
+        <span class="codeInline">Controller : Download Package > Code > RoR > app > controllers > dbjs_data_url_controller.rb</span>. <br>
+        <span class="codeInline">Rhtml : Download Package > Code > RoR > app > views > dbjs_data_url</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Mission for this example </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Let us first define what we want to achieve in this example. We'll carry on from our previous drill-down example and convert it into a single page example. In our previous example, we were showing the Production Summary of all the factories in a pie chart. When the user clicked on a pie slice, he was taken to another page, where a detailed date-wise chart was shown for the required factory. </p>
+        <p>In this example, we'll assimilate both the charts in a single page and make them interact with each other using JavaScript, thereby making the end-user experience smooth. Effectively, we will do the following:</p>
+      <ol>
+          <li>Contain both the pie chart (summary) and column chart (detailed) in one page (<span class="codeInline">default</span>).</li>
+          <li>When the page loads, the pie chart would use <span class="codeInline">dataXML</span> method to show summary  of all factories. 
+        <li>The column chart would initialize with no data, as the user has not selected a factory initially. We'll customize the &quot;<span class="codeInline">No data to display</span>&quot; message of the chart to show a friendly message.</li>
+        <li>The pie chart would have JavaScript links defined for each pie slice. This JavaScript links refer to <span class="codeInline">updateChart()</span> JavaScript function present on the same page. We'll later see how to hand code this function. When a pie is clicked, the <span class="codeInline">factory ID </span>is passed to this function. </li>
+        <li>The <span class="codeInline"> updateChart()</span> function is responsible for udapting the column chart. It generates a dataURL link by including the <span class="codeInline">factoryId</span> as a part of dataURL<span class="codeInline">. </span><span class="text">Once the dataURL is built, it conveys this dataURL to the column chart</span><span class="codeInline">.</span></li>
+        <span class="codeInline">
+              <li class="text">The column chart would now accept this dataURL, send a request  for XML data, accept it, parse it and finally render.</li>
+        </span>
+      </ol></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Creating the charts container page </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Both the charts and JavaScript functions to manipulate the charts is contained in <span class="codeInline">default</span>. It has the following code: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock"><p><br />
+            <b>Controller: dbjs_data_url_controller.rb <br>
+              Action: default</b><br>
+       class DbjsDataUrlController < ApplicationController<br>
+&nbsp;def default<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Initialize the Pie chart with sum of production for each of the factories </span><br>
+&nbsp;&nbsp;&nbsp;oRs=''<br>
+&nbsp;&nbsp;&nbsp;oRs2=''<br>
+&nbsp;&nbsp;&nbsp;strQuery=''<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#strXML will be used to store the entire XML document generated</span><br>
+&nbsp;&nbsp;&nbsp;strXML =''<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Generate the chart element</span><br>
+&nbsp;&nbsp;&nbsp;strXML = "&lt;chart caption='Factory Output report' subCaption='By Quantity' &nbsp;&nbsp;&nbsp;pieSliceDepth='30' showBorder='1' 
+        &nbsp;&nbsp;&nbsp;formatNumberScale='0' numberSuffix=' Units' &gt;" <br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Iterate through each factory</span><br>
+&nbsp;&nbsp;&nbsp;oRs = Factorymaster.find(:all)<br>
+&nbsp;&nbsp;&nbsp;oRs.each do |recordset| <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@oRs2 = Factoryoutput.find(:all,:conditions=>["FactoryId=?",recordset.FactoryId])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordcount = @oRs2.length<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while count < recordcount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity = quantity + @oRs2[count][:Quantity].to_i<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count = count + 1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">#puts quantity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Generate &lt;set label='..' value='..'/&gt; </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factoryid = ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@oRs2.each do |recordset2|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if factoryid != recordset2.FactoryId<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='" + recordset.FactoryName + "' value='" + quantity.to_s + "' link='javaScript:updateChart(" + recordset.FactoryId.to_s + ")'/&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factoryid = recordset2.FactoryId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Finally, close &lt;chart&gt; element</span><br>
+&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;/chart&gt;"<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Create the chart - Pie 3D Chart with data from strXML</span><br>
+&nbsp;&nbsp;<strong>&nbsp;@chart1=renderChart("/FusionCharts/Pie3D.swf", "", strXML, "FactorySum", 500, 250, false, false)</strong><br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Column 2D Chart with changed "No data to display" message<br>
+&nbsp;&nbsp;&nbsp;#We initialize the chart with &lt;chart&gt;&lt;/chart&gt;</span><br>
+&nbsp;&nbsp;<strong>&nbsp;@chart2=renderChart("/FusionCharts/Column2D.swf?ChartNoDataText=Please select a factory from pie chart above to view detailed 
+        &nbsp;&nbsp;&nbsp;data.", "", "&lt;chart&gt;&lt;/chart&gt;", "FactoryDetailed", 600, 250, false, false)</strong><br>
+&nbsp;end<br>
+        end</p>
+      <p><b>View:</b><br>
+&lt;HTML&gt;<br />
+&nbsp;&lt;HEAD&gt;<br />
+&nbsp;&nbsp;&lt;TITLE&gt;FusionCharts - Database + JavaScript Example&lt;/TITLE&gt;<br />
+&nbsp; &nbsp;&lt;%<br/>
+&nbsp; &nbsp; &nbsp; =begin<br/>
+&nbsp; &nbsp; &nbsp;<span class="codeComment">	'In this example, we show a combination of database + JavaScript (dataURL method)<br/>
+&nbsp; &nbsp; &nbsp;'rendering using FusionCharts.<br/>
+&nbsp; &nbsp; &nbsp;'The entire app (page) can be summarized as under. This app shows the break-down<br/>
+&nbsp; &nbsp; &nbsp;'of factory wise output generated. In a pie chart, we first show the sum of quantity<br/>
+&nbsp; &nbsp; &nbsp;'generated by each factory. These pie slices, when clicked would show detailed date-wise<br/>
+&nbsp; &nbsp; &nbsp;'output of that factory. The detailed data would be dynamically pulled by the column<br/>
+&nbsp; &nbsp; &nbsp;'chart from another Rails page. There are no page refreshes required. Everything<br/>
+&nbsp; &nbsp; &nbsp;'is done on one single page.<br/>
+&nbsp; &nbsp; &nbsp;'The XML data for the pie chart is fully created in Rails at run-time. Rails interacts<br/>
+&nbsp; &nbsp; &nbsp; 'with the database and creates the XML for this.<br/>
+&nbsp; &nbsp; &nbsp;'Now, for the column chart (date-wise output report), each time we need the data<br/>
+&nbsp; &nbsp; &nbsp;'we dynamically submit request to the server with the appropriate factoryId. The server<br/>
+&nbsp; &nbsp; &nbsp;'responds with an XML document, which we accept and update chart at client side.</span><br/>
+&nbsp;&nbsp;&nbsp;=end<br/>
+&nbsp;&nbsp;%&gt;<br/>
+&nbsp;&nbsp;&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;/FusionCharts/FusionCharts.js&quot;&gt;<br/>
+&nbsp;&nbsp;&nbsp;		/<span class="codeComment">/You need to include the above JS file, if you intend to embed the chart using JavaScript.<br/>
+&nbsp;&nbsp;&nbsp;	//Embedding using JavaScripts avoids the "Click to Activate..." issue in Internet Explorer<br/>
+&nbsp;&nbsp;&nbsp;	//When you make your own charts, make sure that the path to this JS file is correct. Else, you would get JavaScript errors.</span><br/>
+&nbsp;&nbsp;&lt;/SCRIPT&gt;<br />
+&nbsp;&nbsp;&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; <br />
+&nbsp;&nbsp;&nbsp;<span class="codeComment">/** <br />
+&nbsp;&nbsp; * updateChart method is invoked when the user clicks on a pie slice.<br />
+&nbsp;&nbsp; * In this method, we get the index of the factory after which we request for XML data<br />
+&nbsp;&nbsp; * for that that factory from controller:dbjs_data_url action:factorydata, and finally<br />
+&nbsp;&nbsp; * update the Column Chart.<br />
+&nbsp;&nbsp; *	@param	factoryIndex	Sequential Index of the factory.<br />
+&nbsp;&nbsp;&nbsp;*/ </span><br />
+&nbsp;&nbsp;	function updateChart(factoryIndex){ <br />
+&nbsp;&nbsp;&nbsp;	<span class="codeComment">//DataURL for the chart</span><br />
+&nbsp;&nbsp;&nbsp;	var strURL = "/dbjs_data_url/factorydata?FactoryId=" + factoryIndex;<br />
+&nbsp;&nbsp;&nbsp;	/<span class="codeComment">/Sometimes, the above URL and XML data gets cached by the browser.<br />
+&nbsp;&nbsp;&nbsp;	//If you want your charts to get new XML data on each request,<br />
+&nbsp;&nbsp;&nbsp;	//you can add the following line:<br />
+&nbsp;&nbsp;&nbsp;	//strURL = strURL + "&currTime=" + getTimeForURL();<br />
+&nbsp;&nbsp;&nbsp;	//getTimeForURL method is defined below and needs to be included<br />
+&nbsp;&nbsp;&nbsp;	//This basically adds a ever-changing parameter which bluffs<br />
+&nbsp;&nbsp;&nbsp;	//the browser and forces it to re-load the XML data every time.<br />
+&nbsp;&nbsp;&nbsp;	//URLEncode it - NECESSARY.</span><br />
+&nbsp;&nbsp;&nbsp;	strURL = escape(strURL);<br />
+&nbsp;&nbsp;&nbsp;<span class="codeComment"> //Get reference to chart object using Dom ID "FactoryDetailed"</span><br />
+&nbsp;&nbsp;&nbsp;	var chartObj = getChartFromId("FactoryDetailed");<br />
+&nbsp;&nbsp;&nbsp;<span class="codeComment">	//Send request for XML</span><br />
+&nbsp;&nbsp;&nbsp;	chartObj.setDataURL(strURL);<br />
+&nbsp;&nbsp;	}<br />
+&nbsp;	<span class="codeComment">/**<br />
+&nbsp;&nbsp; * getTimeForURL method returns the current time <br />
+&nbsp;&nbsp; * in a URL friendly format, so that it can be appended to<br />
+&nbsp;&nbsp; * dataURL for effective non-caching.<br />
+&nbsp;&nbsp;*/</span><br />
+&nbsp;&nbsp;	function getTimeForURL(){<br />
+&nbsp;&nbsp;&nbsp;	var dt = new Date();<br />
+&nbsp;&nbsp;&nbsp;		var strOutput = "";<br />
+&nbsp;&nbsp;&nbsp;		strOutput = dt.getHours() + "_" + dt.getMinutes() + "_" + dt.getSeconds() + "_" +<br />
+&nbsp;&nbsp;&nbsp;&nbsp;dt.getMilliseconds();<br />
+&nbsp;&nbsp;&nbsp;		return strOutput;<br />
+&nbsp;&nbsp;	}<br>
+&nbsp;&lt;/SCRIPT&gt;
+&nbsp;<br />
+&nbsp;&lt;/HEAD&gt;<br />
+&nbsp;&nbsp;&lt;BODY&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;CENTER&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FusionCharts Database + JavaScript (dataURL method) Example<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Inter-connected charts - Click on any pie slice to see detailed chart below.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;The charts in this page have been dynamically generated using data contained in a database.<br />
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= @chart1%&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= @chart2%&gt;</strong>
+<br/>
+&nbsp;&nbsp;&nbsp;&lt;/CENTER&gt;<br />
+&nbsp;&nbsp;&lt;/BODY&gt;<br />
+&lt;/HTML&gt;</p></td>
+  <tr>
+    <td valign="top" class="text"><p>Before we get to the JavaScript functions, let's first see what we're doing in our Code. </p>
+        <p>We first create the XML data document for Pie chart - summary of factory output. For each <span class="codeInline">&lt;set&gt;</span>, we provide a JavaScript link to the <span class="codeInline">updateChart()</span> function and pass the factory ID to it as shown in the line below:</p>
+      <p class="codeInline">strXML = strXML + "&lt;set label='" + recordset.FactoryName + "' value='" + quantity.to_s + "' link='javaScript:<strong>updateChart(" + recordset.FactoryId.to_s + ")</strong>'/&gt;"</p>
+      <p>We now render the Pie 3D chart using dataXML method. The Pie 3D chart has its DOM Id as <span class="codeInline">FactorySum</span>:</p>
+      <p class="codeInline"> @chart1=renderChart("/FusionCharts/Pie3D.swf", "", <strong> strXML</strong>, <strong>"FactorySum"</strong>, 500, 250, false, false)</p>
+      <p>Now, we render an empty Column 2D chart  with <span class="codeInline">&lt;chart&gt;&lt;/chart&gt;</span> data initially. We also change the &quot;<span class="codeInline">No data to display.</span>&quot; error to a friendly and intuitive &quot;<span class="codeInline">Please select a factory from pie chart above to view detailed data.</span>&quot; This chart has its DOM Id as <span class="codeInline">FactoryDetailed</span>.</p>
+      <p><span class="codeInline"> @chart2=renderChart("/FusionCharts/Column2D.swf?<strong>ChartNoDataText=Please select a factory from pie chart above to view detailed data.</strong>", "", "&lt;chart&gt;&lt;/chart&gt;", <strong>"FactoryDetailed"</strong>, 600, 250, false, false) </span></p>
+      <p>Effectively, our page is now  set to show two charts. The pie chart shows the summary data provided to it using dataXML method. The column chart shows the above &quot;friendly&quot; error message. Now, when each pie slice is clicked, the <span class="codeInline">updateChart()</span> JavaScript function is called and the <span class="codeInline">factoryID</span> of the pie is passed to it. This function is responsible for updating the column chart and contains the following code: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock">&nbsp;<strong>function updateChart(factoryIndex){ </strong><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//DataURL for the chart</span><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var strURL = &quot;FactoryData?factoryId=&quot; + factoryIndex;<br />
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;//Sometimes, the above URL and XML data gets cached by the browser.<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//If you want your charts to get new XML data on each request,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//you can add the following line:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//strURL = strURL + &quot;&amp;currTime=&quot; + getTimeForURL();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//getTimeForURL method is defined below and needs to be included<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//This basically adds a ever-changing parameter which bluffs<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//the browser and forces it to re-load the XML data every time.</span><br />
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;//URLEncode it - NECESSARY.</span><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strURL = unescape(strURL);<br />
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;//Get reference to chart object using Dom ID &quot;FactoryDetailed&quot;</span><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var chartObj = getChartFromId(&quot;FactoryDetailed&quot;); <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;//Send request for XML</span><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>chartObj.setDataURL(strURL);</strong><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, </p>
+        <ol>
+          <li>We first create a <span class="codeInline">dataURL</span> string by appending the <span class="codeInline">factoryID</span> to <span class="codeInline">FactoryData</span>. </li>
+          <li>Thereafter, we URL Encode this <span class="codeInline">dataURL</span>. </li>
+          <li>Finally, we convery this <span class="codeInline">dataURL</span> to the column chart. To do so, we first get a reference to the column chart using it's DOM Id <span class="codeInline">FactoryDetailed</span>. We use the <span class="codeInline">getChartFromId</span>() function defined in <span class="codeInline">FusionCharts.js</span> to do so. </li>
+          <li>Once we've the reference to the chart, we simply call the <span class="codeInline">setDataURL</span> method of the chart and pass it the URL to request data from. </li>
+          <li>This updates the chart with new data. </li>
+        </ol>
+      <p>This completes our  front-end for the app. We now just need to build <span class="codeInline">FactoryData</span> page, which is responsible to provide detailed data to column chart. It contains the following code: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock"><br />
+        <b>Controller: dbjs_data_url_controller.rb <br>
+          Action: factorydata</b><br>
+      class DbjsDataUrlController < ApplicationController<br>
+&nbsp;def factorydata<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Request the factory Id from Querystring</span><br>
+&nbsp;&nbsp;&nbsp;fid = params["FactoryId"]<br>
+&nbsp;&nbsp;&nbsp;oRs=''<br>
+&nbsp;&nbsp;&nbsp;strQuery=''<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#strXML will be used to store the entire XML document generated</span><br>
+&nbsp;&nbsp;&nbsp;strXML=''<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#intCounter	=''</span><br>
+&nbsp;&nbsp;&nbsp;intCounter = 0<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Generate the chart element string</span><br>
+&nbsp;&nbsp;&nbsp;strXML = "&lt;chart palette='2' caption='Factory " + fid.to_s + " Output ' subcaption='(In Units)' xAxisName='Date' showValues='1' 
+        &nbsp;&nbsp;&nbsp;labelStep='2' &gt;"<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Now, we get the data for that factory</span><br>
+&nbsp;&nbsp;&nbsp;factoryid = Factorymaster.find_by_FactoryId(fid.to_s)<br>
+&nbsp;&nbsp;&nbsp;oRs = Factoryoutput.find(:all,:conditions=>["FactoryId=?",factoryid[:FactoryId]])<span class="codeComment">
+</span><br>
+&nbsp;&nbsp;&nbsp;oRs.each do |recordset|
+&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='" + recordset.DatePro.to_s + "' value='" +recordset.Quantity.to_s + "'/&gt;"<br>
+&nbsp;&nbsp;&nbsp;end <br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Close &lt;chart&gt; element</span><br>
+&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;/chart&gt;"<br>
+&nbsp;&nbsp;&nbsp;headers['Content-Type'] = "text/xml"<br>
+&nbsp;&nbsp;&nbsp;render :text=> strXML,:layout=>false<br>
+&nbsp;end <br>
+        end <font color="blue"><br>
+        </font>
+  
+  <tr>
+      <td valign="top" class="text"><p>In this page, we basically request the factory Id passed to it as querystring, query the database for required data, build XML document out of it and finally write it to output stream. </p>
+        <p>When you now see the application, the initial state would look as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_JS_URL_Ini.jpg" width="511" height="458" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">And when you click on a pie slice, the following would appear on the same page (without involving any browser refreshes): </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_JS_URL_Fin.jpg" width="610" height="526" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">This example demonstrated a very basic sample of the integration capabilities possible with FusionCharts v3. For advanced demos, you can see and download our FusionCharts Blueprint/Demo Applications. </td>
+  </tr>
+</table>
+</body>
+</html>

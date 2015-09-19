@@ -1,0 +1,7 @@
+Given the following HTML snippet:
+<img id="#help" src="/images/help.png" alt="Help" title="Help tooltip">
+
+You use the plugin as so:
+$(function() {
+    $('#help').hovertip();
+}

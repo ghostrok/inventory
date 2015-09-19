@@ -1,0 +1,129 @@
+@charset "utf-8";
+/* base */
+body{font:0.75em Gulim, "굴림", Dotum, "돋움", sans-serif;color:#333}
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, input, table, tr, th, td{margin:0;padding:0}
+h1, h2, h3, h4, h5, h6{font-weight:normal;font-size:100%}
+ul, ol, li{list-style:none}
+fieldset, img{border:none}
+
+div.blackcatson {color: white; font-size: 12px; line-height: 20px }
+div.blackcat {color: black; font-size: 12px; line-height: 20px }
+table {font-family: dotum,돋움; color: #656565; font-size: 12px; line-height: 20px }
+	  
+a:link { color: #656565; text-decoration: none }
+a:visited { color: #656565; text-decoration: none }
+a:active { color: #656565; text-decoration: none }
+a:hover { color: #3568aa; text-decoration: underline }
+
+
+/* 공통 */
+.bg_bar {
+background : url(../img/top/bg_bar.gif) no-repeat  center; 
+width : 100%;
+height : 150px;
+vertical-align : top; 
+}
+.logo {
+padding : 12px 0 12px 0; 
+width : 380px;
+height : 74px;
+}
+.smenu {
+padding : 36px 0 21px 0; 
+width : 600px;
+vertical-align : top; 
+text-align : right;
+}
+.wmenu {
+width : 200px;
+height : 43px;
+padding : 0 0 1px 0; 
+}
+.menu {
+width : 780px;
+text-align : right;
+padding : 0 0 1px 0; 
+}
+.img_align {
+vertical-align : middle;
+}
+a { selector-dummy : expression(this.hideFocus=true);} 
+
+a.rollover img {
+border-width : 0px; 
+display : inline;
+}
+a.rollover img.rollover {
+display : none;
+}
+a.rollover:hover {
+position : relative; 
+}
+a.rollover:hover img {
+display : none; 
+}
+a.rollover:hover img.rollover {
+display : inline; 
+}
+
+
+/*하단공통 */
+.bottom_line {
+background : url(../img/bottom/all_bg.gif);
+height : 41px;
+}
+.bottom_copy {
+background : url(../img/bottom/copy.gif) no-repeat  top center;
+padding : 20px 0 0 0; 
+height : 110px;
+vertical-align : top; 
+}
+
+
+/*서브공통 */
+.content {
+width : 100%; 
+text-align : center;
+vertical-align : top; 
+}
+.con_l{
+width : 220px; 
+vertical-align : top; 
+}
+.con_r{
+width : 760px; 
+vertical-align : top; 
+}
+.left_cs{
+background : url(../img/left/cs_bg.gif)  no-repeat top; 
+width : 170px; 
+height :186px;
+vertical-align : top; 
+text-align : center;
+padding : 80px 0 25px 0; 
+}
+.left_cs_btn{
+padding : 0 0 3px 0; 
+vertical-align : top; 
+}
+.con_pos{
+width : 760px; 
+height : 67px;
+vertical-align : top; 
+text-align : right;
+font-size:11px; 
+letter-spacing:-1px; 
+color: #bebdbd;  
+padding : 5px 0 0 0; 
+}
+.con_pos_on{
+font-weight : bold; 
+color: #1d5792;  
+}
+
+/* 준비중 */
+.sample{
+background : url(../img/sample.gif)  no-repeat ; 
+width : 760px; 
+height : 285px;
+}

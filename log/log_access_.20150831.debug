@@ -1,0 +1,1106 @@
+,20150831104156,Begin ============================================================
+,20150831104156,server
+,20150831104156,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '1656',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeOw5H8AAAEAAA9QCNsAAAD4',
+  'nolog' => '1',
+  'HTTP_ACCEPT' => 'text/html, application/xhtml+xml, */*',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_DNT' => '1',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_COOKIE' => 'PHPSESSID=68c0934346e1577bf900400262bc3c71',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001_write.php',
+  'REMOTE_PORT' => '10669',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001_write.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001_write.php',
+  'PHP_SELF' => '/contents/menu1/A0001_write.php',
+  'REQUEST_TIME' => 1440985316,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831104156,REQUEST_URI : /contents/menu1/A0001_write.php
+,20150831104156,[request data]
+,20150831104156,array (
+  'PHPSESSID' => '68c0934346e1577bf900400262bc3c71',
+)
+,20150831104156,array (
+)
+,20150831104156,array (
+  'PHPSESSID' => '68c0934346e1577bf900400262bc3c71',
+)
+,20150831104156,End ============================================================
+,20150831152804,Begin ============================================================
+,20150831152804,server
+,20150831152804,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '328',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VePz838AAAEAAA@MAUcAAAD5',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/index.php',
+  'REMOTE_PORT' => '9808',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/',
+  'SCRIPT_NAME' => '/index.php',
+  'PHP_SELF' => '/index.php',
+  'REQUEST_TIME' => 1441002484,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152804,REQUEST_URI : /
+,20150831152804,[request data]
+,20150831152804,array (
+)
+,20150831152804,array (
+)
+,20150831152804,array (
+)
+,20150831152804,End ============================================================
+,20150831152820,Begin ============================================================
+,20150831152820,server
+,20150831152820,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '328',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BH8AAAEAAA@MAWAAAAD5',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'CONTENT_LENGTH' => '62',
+  'HTTP_CACHE_CONTROL' => 'max-age=0',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_ORIGIN' => 'http://inventory.net',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+  'HTTP_REFERER' => 'http://inventory.net/',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/common/login_proc.php',
+  'REMOTE_PORT' => '9834',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'POST',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/common/login_proc.php',
+  'SCRIPT_NAME' => '/common/login_proc.php',
+  'PHP_SELF' => '/common/login_proc.php',
+  'REQUEST_TIME' => 1441002500,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152820,REQUEST_URI : /common/login_proc.php
+,20150831152820,[request data]
+,20150831152820,array (
+  'mem_id' => 'ghostrok',
+  'mem_pw' => 'asdf',
+  'submit' => '로그인',
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152820,array (
+)
+,20150831152820,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152820,End ============================================================
+,20150831152821,Begin ============================================================
+,20150831152821,server
+,20150831152821,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '328',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BX8AAAEAAA@MAWEAAAD5',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/common/login_proc.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/index.php',
+  'REMOTE_PORT' => '9834',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/index.php',
+  'SCRIPT_NAME' => '/contents/index.php',
+  'PHP_SELF' => '/contents/index.php',
+  'REQUEST_TIME' => 1441002501,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152821,REQUEST_URI : /contents/index.php
+,20150831152821,[request data]
+,20150831152821,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152821,array (
+)
+,20150831152821,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152821,End ============================================================
+,20150831152821,Begin ============================================================
+,20150831152821,server
+,20150831152821,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '328',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BX8AAAEAAA@MAWIAAAD5',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/index.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/top_nav.php',
+  'REMOTE_PORT' => '9834',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/top_nav.php',
+  'SCRIPT_NAME' => '/contents/top_nav.php',
+  'PHP_SELF' => '/contents/top_nav.php',
+  'REQUEST_TIME' => 1441002501,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152821,REQUEST_URI : /contents/top_nav.php
+,20150831152821,[request data]
+,20150831152821,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152821,array (
+)
+,20150831152821,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152821,End ============================================================
+,20150831152822,Begin ============================================================
+,20150831152822,server
+,20150831152822,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '328',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BX8AAAEAAA@MAWUAAAD4',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/index.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/main.php',
+  'REMOTE_PORT' => '9838',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/main.php',
+  'SCRIPT_NAME' => '/contents/main.php',
+  'PHP_SELF' => '/contents/main.php',
+  'REQUEST_TIME' => 1441002502,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152822,REQUEST_URI : /contents/main.php
+,20150831152822,[request data]
+,20150831152822,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152822,array (
+)
+,20150831152822,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152822,End ============================================================
+,20150831152822,Begin ============================================================
+,20150831152822,server
+,20150831152822,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BX8AAAEAAA@MAWMAAAD0',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/index.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/left.php',
+  'REMOTE_PORT' => '9837',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/left.php',
+  'SCRIPT_NAME' => '/contents/left.php',
+  'PHP_SELF' => '/contents/left.php',
+  'REQUEST_TIME' => 1441002502,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152822,REQUEST_URI : /contents/left.php
+,20150831152822,[request data]
+,20150831152822,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152822,array (
+)
+,20150831152822,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152822,End ============================================================
+,20150831152822,Begin ============================================================
+,20150831152822,server
+,20150831152822,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '1704',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0BX8AAAEAAA@MAWQAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/index.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/footer.php',
+  'REMOTE_PORT' => '9839',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/footer.php',
+  'SCRIPT_NAME' => '/contents/footer.php',
+  'PHP_SELF' => '/contents/footer.php',
+  'REQUEST_TIME' => 1441002502,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152822,REQUEST_URI : /contents/footer.php
+,20150831152822,[request data]
+,20150831152823,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152823,array (
+)
+,20150831152823,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152823,End ============================================================
+,20150831152828,Begin ============================================================
+,20150831152828,server
+,20150831152828,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '1704',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0DH8AAAEAAA@MAWYAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/top_nav.php',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/left.php',
+  'REMOTE_PORT' => '9839',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => 'mid=1',
+  'REQUEST_URI' => '/contents/left.php?mid=1',
+  'SCRIPT_NAME' => '/contents/left.php',
+  'PHP_SELF' => '/contents/left.php',
+  'REQUEST_TIME' => 1441002508,
+  'argv' => 
+  array (
+    0 => 'mid=1',
+  ),
+  'argc' => 1,
+)
+,20150831152828,REQUEST_URI : /contents/left.php?mid=1
+,20150831152828,[request data]
+,20150831152828,array (
+  'mid' => '1',
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152828,array (
+)
+,20150831152828,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152828,End ============================================================
+,20150831152829,Begin ============================================================
+,20150831152829,server
+,20150831152829,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '1704',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0DX8AAAEAAA@MAWcAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '9839',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441002509,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152829,REQUEST_URI : /contents/menu1/A0001.php
+,20150831152829,[request data]
+,20150831152829,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152829,array (
+)
+,20150831152829,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152829,End ============================================================
+,20150831152831,Begin ============================================================
+,20150831152831,server
+,20150831152831,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '1704',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeP0D38AAAEAAA@MAWkAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '9839',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441002511,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831152831,REQUEST_URI : /contents/menu1/A0001.php
+,20150831152831,[request data]
+,20150831152831,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152831,array (
+)
+,20150831152831,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831152831,End ============================================================
+,20150831173607,Begin ============================================================
+,20150831173607,server
+,20150831173607,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR938AAAEAAA@MAW0AAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010167,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173607,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173607,[request data]
+,20150831173607,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173607,array (
+)
+,20150831173607,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173607,End ============================================================
+,20150831173608,Begin ============================================================
+,20150831173608,server
+,20150831173608,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR@H8AAAEAAA@MAW8AAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010168,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173608,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173608,[request data]
+,20150831173608,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173608,array (
+)
+,20150831173608,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173608,End ============================================================
+,20150831173609,Begin ============================================================
+,20150831173609,server
+,20150831173609,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR@X8AAAEAAA@MAXEAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010169,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173609,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173609,[request data]
+,20150831173609,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173609,array (
+)
+,20150831173609,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173609,End ============================================================
+,20150831173612,Begin ============================================================
+,20150831173612,server
+,20150831173612,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR-H8AAAEAAA@MAXMAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010172,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173612,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173612,[request data]
+,20150831173612,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173612,array (
+)
+,20150831173612,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173612,End ============================================================
+,20150831173613,Begin ============================================================
+,20150831173613,server
+,20150831173613,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR-X8AAAEAAA@MAXUAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010173,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173613,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173613,[request data]
+,20150831173613,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173613,array (
+)
+,20150831173613,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173613,End ============================================================
+,20150831173614,Begin ============================================================
+,20150831173614,server
+,20150831173614,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQR-n8AAAEAAA@MAXcAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010174,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173614,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173614,[request data]
+,20150831173615,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173615,array (
+)
+,20150831173615,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173615,End ============================================================
+,20150831173617,Begin ============================================================
+,20150831173617,server
+,20150831173617,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQSAX8AAAEAAA@MAXkAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010177,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173617,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173617,[request data]
+,20150831173617,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173617,array (
+)
+,20150831173617,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173617,End ============================================================
+,20150831173619,Begin ============================================================
+,20150831173619,server
+,20150831173619,array (
+  'PATH' => 'C:\\Program Files (x86)\\Wizvera\\Delfino;d:\\DEV\\java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\PC Connectivity Solution\\;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Windows\\system32\\wbem;C:\\Program Files (x86)\\IVT Corporation\\BlueSoleil\\Mobile;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files (x86)\\AMD\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;',
+  'SYSTEMROOT' => 'C:\\Windows',
+  'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'WINDIR' => 'C:\\Windows',
+  'PHP_FCGI_MAX_REQUESTS' => '10000',
+  '_FCGI_SHUTDOWN_EVENT_' => '316',
+  'FCGI_ROLE' => 'RESPONDER',
+  'UNIQUE_ID' => 'VeQSAn8AAAEAAA@MAXsAAAD2',
+  'nolog' => '1',
+  'HTTP_HOST' => 'inventory.net',
+  'HTTP_CONNECTION' => 'close',
+  'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+  'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+  'HTTP_REFERER' => 'http://inventory.net/contents/left.php?mid=1',
+  'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+  'HTTP_ACCEPT_LANGUAGE' => 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+  'HTTP_COOKIE' => 'PHPSESSID=102490f8820cb3f54898d8479bcbdebb',
+  'SystemRoot' => 'C:\\Windows',
+  'SERVER_SIGNATURE' => '<address>X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7 Server at inventory.net Port 80</address>
+',
+  'SERVER_SOFTWARE' => 'X-Server Apache/2.2.18 (RWAPM64) mod_fcgid/2.3.7',
+  'SERVER_NAME' => 'inventory.net',
+  'SERVER_ADDR' => '127.0.0.1',
+  'SERVER_PORT' => '80',
+  'REMOTE_ADDR' => '127.0.0.1',
+  'DOCUMENT_ROOT' => 'D:/DEV/workspace/INVEN',
+  'SERVER_ADMIN' => 'webmaster@dummy-host.example.com',
+  'SCRIPT_FILENAME' => 'D:/DEV/workspace/INVEN/contents/menu1/A0001.php',
+  'REMOTE_PORT' => '3977',
+  'GATEWAY_INTERFACE' => 'CGI/1.1',
+  'SERVER_PROTOCOL' => 'HTTP/1.1',
+  'REQUEST_METHOD' => 'GET',
+  'QUERY_STRING' => '',
+  'REQUEST_URI' => '/contents/menu1/A0001.php',
+  'SCRIPT_NAME' => '/contents/menu1/A0001.php',
+  'PHP_SELF' => '/contents/menu1/A0001.php',
+  'REQUEST_TIME' => 1441010178,
+  'argv' => 
+  array (
+  ),
+  'argc' => 0,
+)
+,20150831173619,REQUEST_URI : /contents/menu1/A0001.php
+,20150831173619,[request data]
+,20150831173619,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173619,array (
+)
+,20150831173619,array (
+  'PHPSESSID' => '102490f8820cb3f54898d8479bcbdebb',
+)
+,20150831173619,End ============================================================

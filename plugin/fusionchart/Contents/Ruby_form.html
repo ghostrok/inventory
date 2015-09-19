@@ -1,0 +1,112 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>FusionCharts Documentation</title>
+<link rel="stylesheet" href="Style.css" type="text/css" />
+</head>
+
+<body>
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td><h2 class="pageHeader">Using FusionCharts with RoR- Charting Data from Forms </h2></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In this section, we'll show you how to use FusionCharts with Ruby to plot data collected in forms. </p>
+        <p>We'll build a simple restaurant sales example, where the user will enter the items sold by a restaurant in a given week. This data will be submitted in a form to the server. We'll acquire this data and plot in on a chart. For the sake of simplicity, we wouldn't do any processing on this data. However, your real life applications might process data before presenting it on the chart. </p>
+      <p><strong>Before you go further with this page, we recommend you to please see the previous section &quot;Basic Examples&quot; as we start off from concepts explained in that page. </strong></p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">All code discussed here is present in <br>
+        <span class="codeInline">Controller : Download Package > Code > RoR > app > controllers > form_based_controller.rb</span>. <br>
+        <span class="codeInline">Rhtml : Download Package > Code > RoR > app > views > form_based</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Building the Form </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The form looks as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_Form.gif" width="445" height="387" class="imageBorder" /></td>
+  </tr>
+  <tr> </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Requesting the data and Creating the Chart </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The work of requesting the data from submitted form and creating the chart containing the following code: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock"><p class="codeBlock"><br />
+            <b>Controller: form_based_controller.rb <br>
+              Action: chart</b><br>
+      class FormBasedController < ApplicationController<br>
+      &nbsp;def chart<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#We first request the data from the controller:form_data action:default</span><br>
+      &nbsp;&nbsp;&nbsp;intSoups=''<br>
+      &nbsp;&nbsp;&nbsp;intSalads=''<br>
+      &nbsp;&nbsp;&nbsp;intSandwiches=''<br>
+      &nbsp;&nbsp;&nbsp;intBeverages=''<br>
+      &nbsp;&nbsp;&nbsp;intDesserts=''<br>
+      &nbsp;&nbsp;&nbsp;intSoups = params["Soups"]<br>
+      &nbsp;&nbsp;&nbsp;intSalads = params["Salads"]<br>
+      &nbsp;&nbsp;&nbsp;intSandwiches = params["Sandwiches"]<br>
+      &nbsp;&nbsp;&nbsp;intBeverages = params["Beverages"]<br>
+      &nbsp;&nbsp;&nbsp;intDesserts   = params["Desserts"]<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#In this example, we're directly showing this data back on chart.<br>
+&nbsp;&nbsp;&nbsp;#In your apps, you can do the required processing and then show the <br>
+&nbsp;&nbsp;&nbsp;#relevant data only.<br>
+&nbsp;&nbsp;&nbsp;#Now that we've the data in variables, we need to convert this into XML.<br>
+&nbsp;&nbsp;&nbsp;#The simplest method to convert data into XML is using string concatenation.</span><br>
+      &nbsp;&nbsp;&nbsp;strXML=''<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#Initialize &lt;chart&gt; element</span><br>
+      &nbsp;&nbsp;&nbsp;strXML = "&lt;chart caption='Sales by Product Category' subCaption='For this week'  &nbsp;&nbsp;&nbsp;showPercentValues='1' pieSliceDepth='30'
+      &nbsp;&nbsp;&nbsp;showBorder='1'&gt;"<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#Add all data</span><br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='Soups' value='" + intSoups.to_s + "' /&gt;"<br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='Salads' value='" + intSalads.to_s + "' /&gt;"<br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='Sandwiches' value='" + intSandwiches.to_s + "' /&gt;"<br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='Beverages' value='" + intBeverages.to_s + "' /&gt;"<br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='Desserts' value='" + intDesserts.to_s + "' /&gt;"<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#Close &lt;chart&gt; element</span><br>
+      &nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;/chart&gt;"<br>
+      &nbsp;&nbsp;<span class="codeComment">&nbsp;#Create the chart - Pie 3D Chart with data from strXML</span><br>
+      &nbsp;&nbsp;<strong>&nbsp;@chart=renderChart("/FusionCharts/Pie3D.swf", "", strXML, "Sales", 500, 300, false, false)</strong><br>
+      &nbsp;end<br>
+      end<br>
+      <br>
+      <b>View:</b><br>
+      &lt;HTML&gt;<br />
+      &nbsp;&lt;HEAD&gt;<br />
+      &nbsp;&nbsp;&lt;TITLE&gt;FusionCharts - Form Based Data Charting Example&lt;/TITLE&gt;
+      &nbsp; &nbsp;<br />
+      &nbsp;&nbsp;&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;/FusionCharts/FusionCharts.js&quot;&gt;&lt;/SCRIPT&gt; <br />
+      &nbsp;&lt;/HEAD&gt;<br />
+      &nbsp;&lt;BODY&gt;
+      &nbsp;<br />
+          <strong>&nbsp;&nbsp;&nbsp;&lt;%= @chart%&gt;</strong> <br />
+      &nbsp;&lt;/BODY&gt;<br />
+      &lt;/HTML&gt;</p></td>
+  <tr>
+    <td valign="top" class="text"><p>As you can see in the above code, we're doing the following:</p>
+        <ul>
+          <li>Including <span class="codeInline">FusionCharts.js</span> </li>
+          <li>Requesting data from the submitted form and storing it in local variables</li>
+          <li>Creating an XML data document using string concatenation and storing it in <span class="codeInline">strXML</span> variable </li>
+          <li>Creating a Pie 3D chart using <span class="codeInline">renderChart()</span> function and passing <span class="codeInline">strXML</span> as <span class="codeInline">dataXML</span> for the chart. </li>
+        </ul>
+      <p>When you finally run the code, you'll see a chart as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_FormChart.jpg" width="468" height="268" class="imageBorder" /></td>
+  </tr>
+</table>
+</body>
+</html>

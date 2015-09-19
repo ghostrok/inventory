@@ -1,0 +1,136 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>FusionCharts Documentation</title>
+<link rel="stylesheet" href="Style.css" type="text/css" />
+</head>
+
+<body>
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td><h2 class="pageHeader">Using FusionCharts with RoR &gt; Plotting data from a database </h2></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In this section, we'll show you how to use FusionCharts and Ruby to plot charts from data contained in a database. We'll create a pie chart to show &quot;Production by Factory&quot; using <span class="codeInline">dataXML</span> method.</p>
+      <p>For the sake of ease, we'll use an MySQL Database. You can, however, use any database with FusionCharts including MS SQL, Oracle, Access etc.  Database configuration will be available here <span class="codeInline">Download Package >> RoR >> config >> database.yml</span>. In the production version, we have used database named as fusioncharts. </p>
+  <p><strong>Before you go further with this page, we recommend you to please see the previous section &quot;Basic Examples&quot; as we start off from concepts explained in that page. </strong></p>  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">All code discussed here is present in <br>
+        <span class="codeInline">Controller : Download Package > Code > RoR > app > controllers > dbexample_controller.rb</span>. <br>
+        <span class="codeInline">Rhtml : Download Package > Code > RoR > app > views > dbexample</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Database Structure </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Llet's quickly have a look at the database structure. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_DB.gif" width="372" height="124" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The database contains just 2 tables:</p>
+        <ol>
+          <li><span class="codeInline">Factory_Master</span>: To store the name and id of each factory</li>
+          <li><span class="codeInline">Factory_Output</span>: To store the number of units produced by each factory for a given date.</li>
+        </ol>
+      <p>For demonstration, we've fed some dummy data in the database. Let's now shift our attention to the RoR that will interact with the database, fetch data and then render a chart. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Building the Ruby for dataXML Method </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">  </tr>
+  <tr>
+    <td valign="top" class="codeBlock"><p><br />
+        <b>Controller: dbexample_controller.rb <br>
+          Action: basicdbexample</b> <font color="blue"><br>
+          </font> class DbExampleController < ApplicationController <br/>
+&nbsp;def basicdbexample<br>
+&nbsp;<span class="codeComment">&nbsp;&nbsp;#In this example, we show how to connect FusionCharts to a database.<br>
+&nbsp;&nbsp;&nbsp;#For the sake of ease, we've used an MySQL .  It just contains two tables, which are linked to each other. </span><br>
+&nbsp;&nbsp;&nbsp;animateChart = params['animate']<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Set default value of 1</span><br>
+&nbsp;&nbsp;&nbsp;if animateChart=""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animateChart = "1"<br>
+&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">#Database Objects - Initialization</span><br>
+&nbsp;&nbsp;&nbsp;oRs=''<br>
+&nbsp;&nbsp;&nbsp;oRs2=''<br>
+&nbsp;&nbsp;&nbsp;strQuery=''<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#strXML will be used to store the entire XML document generated</span><br>
+&nbsp;&nbsp;&nbsp;strXML=''<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Create the recordset to retrieve data<br>
+&nbsp;&nbsp;&nbsp;#Generate the chart element</span><br>
+&nbsp;&nbsp;&nbsp;strXML = "&lt;chart caption='Factory Output report' subCaption='By Quantity' pieSliceDepth='30' showBorder='1' formatNumberScale='0' 
+                &nbsp;&nbsp;&nbsp;numberSuffix=' Units animation='" + animateChart + "'&gt;"<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Iterate through each factory</span><br>
+&nbsp;&nbsp;&nbsp;oRs = Factorymaster.find(:all)<br>
+&nbsp;&nbsp;&nbsp;oRs.each do |recordset| <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;#Now create second recordset to get details for this factory</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@oRs2 = Factoryoutput.find(:all,:conditions=>["FactoryId=?",recordset.FactoryId.to_s])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordcount = @oRs2.length<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while count < recordcount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity = quantity + @oRs2[count][:Quantity].to_i<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count = count + 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;&nbsp;#Generate &lt;set label='..' value='..'/&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factoryid = ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@oRs2.each do |recordset2|<br>
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if factoryid != recordset2.FactoryId<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;set label='" + recordset.FactoryName + "' value='" + quantity.to_s + "' /&gt;"<br>
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factoryid = recordset2.FactoryId&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;&nbsp;end<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Close recordset<br>
+&nbsp;&nbsp;&nbsp;#Finally, close &lt;chart&gt; element</span><br>
+&nbsp;&nbsp;&nbsp;strXML = strXML + "&lt;/chart&gt;"<br>
+&nbsp;&nbsp;<span class="codeComment">&nbsp;#Create the chart - Pie 3D Chart with data from strXML</span><br>
+&nbsp;&nbsp;<strong>&nbsp;@chart=renderChart("/FusionCharts/Pie3D.swf", "", strXML, "FactorySum", 600, 300, false, false)</strong><br>
+&nbsp;end<br>
+                end</p>
+      <p><font color="blue"><br>
+        </font> <b>View:</b><br>
+&lt;HTML&gt;<br />
+&nbsp;  &lt;HEAD&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;TITLE&gt;		FusionCharts - Database Example
+        &lt;/TITLE&gt;
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;/FusionCharts/FusionCharts.js&quot;&gt;&lt;/SCRIPT&gt;
+&nbsp;&nbsp;<br/>
+&nbsp;&lt;/HEAD&gt;<br/>
+&nbsp;&lt;BODY&gt;
+&nbsp;<br />
+&nbsp;&nbsp;<strong>&nbsp;&lt;%= @chart%&gt;
+&nbsp;&nbsp;</strong><br/>
+&nbsp;&lt;/BODY&gt;<br/>
+&lt;/HTML&gt;</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The following actions are taking place in this code:</p>
+        <ol>
+          <li>We first include <span class="codeInline">FusionCharts.js</span> JavaScript class       
+          <li>Thereafter, we generate the XML data document by iterating through the recordset and store it in <span class="codeInline">strXML</span> variable. </li>
+          <li>Finally, we render the chart using <span class="codeInline">renderChart()</span> method and pass <span class="codeInline">strXML</span> as <span class="codeInline">dataXML</span>. </li>
+        </ol>
+      <p>When you now run the code, you'll get an output as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Code_DBOut.jpg" width="572" height="273" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

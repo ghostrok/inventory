@@ -1,0 +1,1 @@
+<%@ Page language="c#" Codebehind="PieData.aspx.cs" AutoEventWireup="false" Inherits="InfoSoftGlobal.GeneralPages.ASP.NET.DB_dataURL.PieData" %>

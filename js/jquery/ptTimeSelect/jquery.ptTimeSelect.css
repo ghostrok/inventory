@@ -1,0 +1,170 @@
+/**
+ * FILE: jquery.ptTileSelect.css
+ * 	Default style for the timeselect container.
+ * 
+ *  LAST UPDATED:
+ * 
+ * 		- $Date: 2009/04/12 20:23:02 $
+ * 		- $Author: paulinho4u $
+ * 		- $Revision: 1.1 $
+ *  <style>
+    #ptTimeSelectCntr {width:336px;font-family:돋움, 굴림;}
+    #ptTimeSelectUserTime {font-size:90%;}
+    #ptTimeSelectSetButton {font-size:80%;font-weight:bold;}
+    .ptTimeSelectHrCntr {font-size:80%;} 
+    .ptTimeSelectMinCntr{font-size:80%;} 
+    </style>
+ *
+ */
+.ui-corner-all {
+    -moz-border-radius: 4px 4px 4px 4px;
+}
+.ui-widget {
+    font-family:'돋움','굴림';
+    font-size:1.1em;
+}
+.ui-widget-header {
+    font-weight:bold;
+    padding: 0.2em;
+    border:1px solid #AAAAAA;
+    background-color:#EFEFEF;
+}
+.ui-widget-content {
+    color:#8C7B81;
+    padding: 0.2em;
+    margin-top:0.2em;
+    margin-bottom:0.2em;
+}
+.ui-widget-footer {
+    color:#8C7B81;
+    padding: 0.2em;
+    border:1px solid #AAAAAA;
+}
+
+.ui-state-default {
+    font-weight: normal;
+    outline: medium none;
+}
+
+ 
+ 
+ 
+#ptTimeSelectCntr {
+    width:300px;
+	font-size: .9em;
+	position: absolute;
+	z-index: 10;
+	display: none;
+    border:2px solid #94CDE7;
+    background-color:#FFFFFF;
+}
+#ptTimeSelectCntr .ui-widget{
+	padding: .2em;
+}
+#ptTimeSelectCntr .ui-widget-header {
+	padding: .2em;
+}
+#ptTimeSelectCntr #ptTimeSelectUserTime {
+	font-size: 1.1em;
+	padding: .2em;
+	padding-left: 1em;
+	text-align: center;
+}
+#ptTimeSelectCntr #ptTimeSelectCloseCntr {
+	display: block;
+	padding: .2em;
+}
+#ptTimeSelectCntr #ptTimeSelectCloseCntr a {
+	display: block;
+	padding: .2em;
+}
+#ptTimeSelectCntr .ui-widget-content {
+	 margin-top: .1em;
+	 margin-bottom: .1em; 
+	 padding: .2em;	
+}
+#ptTimeSelectCntr .ui-widget.ui-widget-content {
+	margin-top: 0;
+}
+#ptTimeSelectCntr .ptTimeSelectLeftPane.ui-widget-content {
+	border-top:none;
+	border-bottom:none;
+	border-left:none;
+	border-right-width: 2px;
+}
+#ptTimeSelectCntr .ptTimeSelectRightPane.ui-widget-content {
+	border: none;
+}
+#ptTimeSelectCntr .ptTimeSelectHrCntr a {
+    display: block;
+    float: left;
+    padding: .3em;
+    width: 1.9em;
+    margin: 1px;
+    text-align: center;
+    text-decoration: none;
+    font-size:.7em;
+    background-color: #EFEFEF;
+    color:#8C7B81;
+    font-weight: bold;
+}
+#ptTimeSelectCntr .ptTimeSelectMinCntr a {
+    display: block;
+    float: left;
+    padding: .3em;
+    width: 1.9em;
+    margin: 1px;
+    text-align: center;
+    text-decoration: none;
+    font-size:.7em;
+    background-color: #EFEFEF;
+    color:#8C7B81;
+    font-weight: bold;
+}
+
+#ptTimeSelectCntr .ptTimeSelectHrCntr a.selected {
+    background-color: #FF6666;
+    color: #FFFFFF;
+}
+
+#ptTimeSelectCntr .ptTimeSelectMinCntr a.selected {
+    background-color: #FF6666;
+    color: #FFFFFF;
+}
+
+#ptTimeSelectCntr .ptTimeSelectHrCntr a:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+}
+
+#ptTimeSelectCntr .ptTimeSelectMinCntr a:hover {
+    background-color: #CCCCCC;
+    color: #000000;
+    border:0px solid #333333; 
+}
+
+#ptTimeSelectCntr .ptTimeSelectHrAmPmCntr a {
+	text-align: center;
+	margin: 1px;
+}
+#ptTimeSelectCntr .ptTimeSelectTimeLabelsCntr {
+	font-weight: bold;
+	font-size: .9em;
+}
+#ptTimeSelectCntr #ptTimeSelectSetButton {
+	padding-top: .2em;
+	padding-bottom: .2em;
+    padding-right: .1em;
+}
+#ptTimeSelectCntr #ptTimeSelectSetButton a {
+	background-color:#90BF5E;
+ 	display: block;
+	padding: .2em;
+	width: 30%;
+	text-align: center;
+	float: right;
+    border:1px solid #90BF5E;
+    font-size: .9em;
+    font-weight: bold;
+    color:#FFFFFF;
+}
