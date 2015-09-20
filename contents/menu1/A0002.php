@@ -11,7 +11,7 @@ include_once "../../plugin/PHPExcel/PHPExcel.php";
 $login_dao 	= new LoginDAO();
 $master_dao = new MasterDAO();
 
-$row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong);
+$row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong, 'A');
 $totl_cnt		= $row_cnt[0]['totl_cnt'];
 
 $now_url		= "A0002.php";
@@ -38,7 +38,7 @@ $opt 			= "su=1";
 $show_pages 	= page_show($page, $total_page, $zone_scale, $now_url, $opt);
 
 // 메인쿼리
-$row 			= $master_dao->selectCustomer($begin, $scale, $sch_gu, $sch_dong, $order);
+$row 			= $master_dao->selectCustomer($begin, $scale, $sch_gu, $sch_dong, $order, 'A');
 
 
 // 구,동 주소표시
@@ -55,7 +55,7 @@ $dong	= $master_dao->selectPostCode('dong');
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height:50px;">
 	<tr>
-		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>MASTER > 지정판매소 관리</b></font></td>
+		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>MASTER > 지정판매소 현황</b></font></td>
 		<td></td>
 		<td></td>
 	</tr>
@@ -96,8 +96,10 @@ $dong	= $master_dao->selectPostCode('dong');
 
 <table align="right">
 	<tr>
+		<!-- 
 		<td><input type="button" value=단일입력 onclick="location.href='A0001_write.php';" class="button_70" /></td>
 		<td><input type="button" value=엑셀입력 onclick="fn_excel_input();" class="button_70" /></td>
+		 -->
 		<td><input type="button" value=엑셀출력 onclick="fn_excel_output();" class="button_70" /></td>
 	</tr>
 </table>
@@ -132,9 +134,9 @@ $dong	= $master_dao->selectPostCode('dong');
 		<td><input type="checkbox" name="u_idx[]" value="10936" /></td>
 		 -->
 		<td><?=$num?></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['sales_num']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['ceo_nm']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>	
+		<td><?=$row[$i]['sales_num']?></td>
+		<td><?=$row[$i]['ceo_nm']?></td>
+		<td><?=$row[$i]['cust_nm']?></td>	
 		<td><?=$row[$i]['use_yn']?></td>
 		<td><?=$row[$i]['regist_num']?></td>
 		<td><?=$row[$i]['tel_num']?></td>

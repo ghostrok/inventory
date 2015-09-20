@@ -11,7 +11,7 @@ include_once "../../plugin/PHPExcel/PHPExcel.php";
 $login_dao 	= new LoginDAO();
 $master_dao = new MasterDAO();
 
-$row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong);
+$row_cnt		= $master_dao->selectCustomerCnt($sch_gu, $sch_dong, 'A');
 $totl_cnt		= $row_cnt[0]['totl_cnt'];
 
 $now_url		= "A0001.php";
@@ -38,7 +38,7 @@ $opt 			= "su=1";
 $show_pages 	= page_show($page, $total_page, $zone_scale, $now_url, $opt);
 
 // 메인쿼리
-$row 			= $master_dao->selectCustomer($begin, $scale, $sch_gu, $sch_dong, $order);
+$row 			= $master_dao->selectCustomer($begin, $scale, $sch_gu, $sch_dong, $order, 'A');
 
 
 // 구,동 주소표시

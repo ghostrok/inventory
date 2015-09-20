@@ -23,12 +23,21 @@ class MasterDAO extends DAO
 	}
 		
 	
-	public function selectCustomerCnt($sch_gu, $sch_dong) {
+	public function selectCustomerCnt($sch_gu, $sch_dong, $cust_type) {
 	
 		$qry  = null;
 	
 		$qry .= " SELECT count(*) as totl_cnt FROM tb_customer WHERE 1=1 ";
 	
+		
+		// 지정판매소
+		if(isset($cust_type) && $cust_type == 'A') {
+			$qry .= " AND cust_type = 'A' ";
+
+		// 거래처
+		} else if(isset($cust_type) && $cust_type == 'B') {
+			$qry .= " AND cust_type = 'B' ";
+		}		
 
 		if(!empty($sch_gu))
 		{
@@ -82,11 +91,21 @@ class MasterDAO extends DAO
 	 * @param unknown $order
 	 * @return Ambigous <multitype:, unknown>
 	 */
-	public function selectCustomer($from, $scale, $sch_gu, $sch_dong, $order) {
+	public function selectCustomer($from, $scale, $sch_gu, $sch_dong, $order, $cust_type) {
 		
 		$qry  = null;
 		
 		$qry .= " SELECT * FROM tb_customer WHERE 1=1 ";
+		
+		// 지정판매소
+		if(isset($cust_type) && $cust_type == 'A') {
+			$qry .= " AND cust_type = 'A' ";
+		// 거래처 
+		} else if(isset($cust_type) && $cust_type == 'B') {
+			$qry .= " AND cust_type = 'B' ";
+			
+		}
+		
 		
 		if(!empty($sch_gu))
 		{
