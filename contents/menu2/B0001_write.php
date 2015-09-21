@@ -3,18 +3,16 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/lib/config/config.php");
 include_once ($LIB_DIR."/config/config.php");
 include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
-include_once ($SMARTY_HOME."/MasterDAO.php");
+include_once ($SMARTY_HOME."/StorageDAO.php");
 
 $login_dao 	= new LoginDAO();
-$master_dao = new MasterDAO();
-
-// 구,동 주소표시
-$gugun	= $master_dao->selectPostCode('gugun');
+$storage_dao = new StorageDAO();
 
 if($cmd == 'edit') {
-	$row = $master_dao->selectCustomerSingle($uid);
+	$row = $storage_dao->selectStorageSingle($uid);
 	//req(u, $row);
 }
+
 
 ?>
 
@@ -24,14 +22,14 @@ if($cmd == 'edit') {
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height:30px;">
 	<tr>
-		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>MASTER > 지정판매소 관리 [입력]</b></font></td>
-		<td></td>
-		<td></td>
+		<td width="80%" colspan="3" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>봉투신청/입고 > 일괄입고 [입력]</b></font></td>
+		<td width="10%" ></td>
+		<td width="10%" ></td>
 	</tr>
 	<tr>
-		<td height="3" width="10%" bgcolor="#6D88CF"></td>
-		<td width="5%" height="3" bgcolor="#E3C159"></td>
-		<td bgcolor="#6D88CF"></td>
+		<td width="80%" colspan="3" height="3" bgcolor="#6D88CF"></td>
+		<td width="10%" height="3" bgcolor="#E3C159"></td>
+		<td width="10%" bgcolor="#6D88CF"></td>
 	</tr>
 </table>
 
@@ -40,7 +38,7 @@ if($cmd == 'edit') {
 
 <form name="form1" method="post" action="" id="form1" enctype="multipart/form-data">	
 <input type="hidden" name="cmd" 	 		 value="<?=$cmd?>" />
-<input type="hidden" name="menu_id"	 		 value="A0001" />
+<input type="hidden" name="menu_id"	 		 value="B0001" />
 <input type="hidden" name="uid" 	 		 value="<?=$row[0]['uid']?>" />
 <input type="hidden" name="file_category" 	 value="" />
 <input type="hidden" name="tbl_nm" 		 	 value= />
@@ -54,75 +52,65 @@ if($cmd == 'edit') {
 		<table width=100% border=0 cellspacing=1 cellpadding=2 bgcolor=''>
 
 			<tr class=td_white>
-				<td width="80px"><b>판매소번호</b></td>
-				<td><input type='text' name='sales_num' size='20' value='<?=$row[0]['sales_num']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>상호명</b></td>
-				<td><input type='text' name='cust_nm' size='20' value='<?=$row[0]['cust_nm']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>사업자번호</b></td>
-				<td><input type='text' name='regist_num' size='20' value='<?=$row[0]['regist_num']?>' /></td>
-				<td width="80px"><b>사업자전화</b></td>
-				<td><input type='text' name='tel_num' size='20' value='<?=$row[0]['tel_num']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>대표자명</b></td>
-				<td><input type='text' name='ceo_nm' size='20' value='<?=$row[0]['ceo_nm']?>' /></td>
-				<td width="80px"><b>대표자전화</b></td>
-				<td><input type='text' name='ceo_tel_num' size='20' value='<?=$row[0]['ceo_tel_num']?>' /></td>
+				<td width="80px"><b>발주처</b></td>
+				<td><input type='text' name='orderer' id="orderer" size='20' value='<?=$row[0]['orderer']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
-				<td width="80px"><b>신주소</b></td>
-				<td><input type='text' name='address_new' size='50' value='<?=$row[0]['address_new']?>' /></td>
+				<td width="80px"><b>발주일자</b></td>
+				<td><input type='text' name='order_date' id="datepicker1" size='20' value='<?=$row[0]['order_date']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b>봉투종류 </b></td>
+				<td><input type='text' name='item_nm' size='20' value='<?=$row[0]['item_nm']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b>발주량</b></td>
+				<td><input type='text' name='order_amount' size='20' value='<?=$row[0]['order_amount']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b>미입고량</b></td>
+				<td><input type='text' name='not_amount' size='20' value='<?=$row[0]['not_amount']?>' /></td>
+				<td width="80px"><b>입고량</b></td>
+				<td><input type='text' name='end_amount' size='20' value='<?=$row[0]['end_amount']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b>제작업체</b></td>
+				<td><input type='text' name='factory' size='20' value='<?=$row[0]['factory']?>' /></td>
+				<td width="80px"><b>Lot No</b></td>
+				<td><input type='text' name='lotno' size='20' value='<?=$row[0]['lotno']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
-				<td width="80px"><b>구주소</b></td>
-				<td><input type='text' name='address' size='50' value='<?=$row[0]['address']?>' /></td>
+				<td width="80px"><b>입고처</b></td>
+				<td><input type='text' name='storager' size='50' value='<?=$row[0]['storager']?>' /></td>
 			</tr>
 
 			<tr class=td_white>
-				<td width="80px"><b>구역</b></td>
-				<td>
-					<select name=area>
-						<?php for($i=0; $i<count($gugun); $i++) { ?>
-						<option value="<?=$gugun[$i]['gugun']?>" <? if($row[0]['area'] == $gugun[$i]['gugun']) { echo "selected";}?>><?=$gugun[$i]['gugun']?></option>
-						<?php }?>
+				<td width="80px"><b>입고일</b></td>
+				<td><input type='text' name='storage_date' size='50' id="datepicker2" value='<?=$row[0]['storage_date']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b>인수자</b></td>
+				<td><input type='text' name='taker' size='20' value='<?=$row[0]['taker']?>' /></td>
+				<td width="80px"><b>인계자</b></td>
+				<td><input type='text' name='giver' size='20' value='<?=$row[0]['giver']?>' /></td>
+			</tr>
 						
-					</select>				
-				</td>
-			</tr>
-
+			 
 			<tr class=td_white>
-				<td width="80px"><b>지정일자</b></td>
-				<td><input type='text' name='applydate' id="datepicker1"  size='10' value='<?=$row[0]['applydate']?>' /></td>
-			</tr>
-
-			<tr class=td_white>
-				<td width="80px"><b>변경일자</b></td>
-				<td><input type='text' name='moddate' id="datepicker2"  size='10' value='<?=$row[0]['moddate']?>' /></td>
-			</tr>
-
-			<tr class=td_white>
-				<td><b>영업상태</b></td>
+				<td><b>입고여부</b></td>
 				<td>
-					<input type=radio name=use_yn value='Y' <? if($row[0]['use_yn'] == 'Y') {?>  checked="checked" <?}?> />정상  
-					<input type=radio name=use_yn value='N' <? if($row[0]['use_yn'] == 'N') {?>  checked="checked" <?}?> />폐업
+					<input type=radio name=use_yn value='Y' <? if($row[0]['use_yn'] == 'Y') {?>  checked="checked" <?}?> />Y  
+					<input type=radio name=use_yn value='N' <? if($row[0]['use_yn'] == 'N') {?>  checked="checked" <?}?> />N
 				</td>
 			</tr>
-
-			<tr class=td_white>
-				<td><b>변경사유</b></td>
-				<td>
-		            <textarea name="moddate_rsn" rows="8" cols="60"><?=$row[0]['moddate_rsn']?></textarea>
-				</td>
-			</tr>
+			
 
 			 
 		</table>			
@@ -135,7 +123,7 @@ if($cmd == 'edit') {
 <cener>
 	<table align="center">
 			<tr>
-				<td align="center"><input type="button" value="목록으로" onclick="location.href='A0001.php';"></input></td>
+				<td align="center"><input type="button" value="목록으로" onclick="location.href='B0001.php';"></input></td>
 
 				<?php if($cmd == 'edit') {?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -342,7 +330,7 @@ $("#express1").bind("click", function() {
 
 		var err = '';
 
-		if (confirm("[" + $("input[name='cust_nm']").val() + "] 의 정보를 삭제 하시겠습니까?")){
+		if (confirm("[" + $("input[name='item_nm']").val() + "] 의 정보를 삭제 하시겠습니까?")){
 			
 			if( $("input[name='cmd']").val() == '')
 			{
@@ -369,34 +357,6 @@ $("#express1").bind("click", function() {
 			
 		}
 	}
-
-
-
-	function chk_reply_form()
-	{
-		var err = '';
-	
-	
-		if( $("input[name='subject']").val() == '')
-		{
-			err += " - 제목란이 비어있습니다. \r\n";
-		}
-			
-		if(err =='')
-		{	
-			$("input[name='cmd']").val('reply');
-			$('#form1').attr('action', 'board_process.php');
-			$('#form1').attr('target', 'ifrm');
-			$('#form1').submit();
-			
-		} 
-			else 
-		{
-			var msg = err + "\r\n - 위와 같은 에러가 발생했습니다. \r\n" ;
-			alert(msg);
-		}
-	}
-
 
 </script>
 

@@ -16,7 +16,7 @@ $totl_cnt		= $row_cnt[0]['totl_cnt'];
 
 $now_url		= "A0003.php";
 $write_url		= "A0003_write.php";
-$excel_url		= "fn.excel.customer2.php";
+$excel_url		= "fn.excel.client.php";
 $page			= $_GET['page'];
 
 //$total_num 		= $totl_cnt;
@@ -88,7 +88,7 @@ $dong	= $master_dao->selectPostCode('dong');
 				<?php }?>				
 			</select>
 			
-			<input type=button value="지정판매소 검색" onclick="javascript:fn_submit();" class="button_50" />
+			<input type=button value="거래처 검색" onclick="javascript:fn_submit();" class="button_50" />
 			<input type=button value=전체보기 onclick="location.href='<?=$_SERVER['PHP_SELF']?>'" class="button_70" />			
 		</td>
 	</tr>
@@ -191,7 +191,7 @@ $dong	= $master_dao->selectPostCode('dong');
 			</tr>
 		</table>
 		
-		<form id="form_excel" name="form_excel" action="fn.excel.customer.insert.php" method="post" enctype="multipart/form-data">		
+		<form id="form_excel" name="form_excel" action="fn.excel.client.insert.php" method="post" enctype="multipart/form-data">		
 		<input type="file" name="excel_file" value="" id="excel_file"/>
 		<input type="button" value="업로드" onclick="fn_upload();"/>
 		
@@ -305,7 +305,7 @@ $dong	= $master_dao->selectPostCode('dong');
 	}
 
 	function fn_sample_down() {
-		location.href = "/upload/sample/sample_customer.xls";
+		location.href = "/upload/sample/sample_client.xls";
 	}
 	
 	

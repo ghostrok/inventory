@@ -24,7 +24,7 @@ if($cmd == 'edit') {
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height:30px;">
 	<tr>
-		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>MASTER > 지정판매소 관리 [입력]</b></font></td>
+		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>MASTER > 거래처 관리 [입력]</b></font></td>
 		<td></td>
 		<td></td>
 	</tr>
@@ -40,11 +40,11 @@ if($cmd == 'edit') {
 
 <form name="form1" method="post" action="" id="form1" enctype="multipart/form-data">	
 <input type="hidden" name="cmd" 	 		 value="<?=$cmd?>" />
-<input type="hidden" name="menu_id"	 		 value="A0001" />
+<input type="hidden" name="menu_id"	 		 value="A0003" />
 <input type="hidden" name="uid" 	 		 value="<?=$row[0]['uid']?>" />
 <input type="hidden" name="file_category" 	 value="" />
 <input type="hidden" name="tbl_nm" 		 	 value= />
-<input type="hidden" name="ret_page" 		 value="" />
+<input type="hidden" name="ret_url" 		 value="" />
 <input type="hidden" name="user_id"  		 value="" />
         
 
@@ -135,12 +135,10 @@ if($cmd == 'edit') {
 <cener>
 	<table align="center">
 			<tr>
-				<td align="center"><input type="button" value="목록으로" onclick="location.href='A0001.php';"></input></td>
-
+				<td align="center"><input type="button" value="목록으로" onclick="location.href='A0003.php';"></input></td>
 				<?php if($cmd == 'edit') {?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<td align="center"><input type="button" value="삭제하기" onclick="chk_write_del('<?=$row[0]['uid']?>');"></input></td>
-				
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<td align="center"><input type="button" value="수정하기" onclick="chk_edit_form();"></input></td>				
 				<?php } else {?>

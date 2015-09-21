@@ -38,8 +38,9 @@ $YOUR_IP 		= $_SERVER['REMOTE_ADDR'];
 
 $ADMIN_ID		= array("ghostrok", "ballrok", "admin");
 $ADMIN_PW		= array("1234", "7878okok", "7878okok");
-
 $ADMIN_IP		= array("59.18.147.102", "59.18.147.103", "59.18.147.104");
+
+
 
 if( array_key_exists('user_id', $_SESSION) ) {
 	$SESS_USER_ID	= @$_SESSION['user_id'];
@@ -75,6 +76,13 @@ Log::debug ("End ============================================================");
 // 첨부파일 허용 확장자
 $ALLOW_EXT_4_FILES = "gif|jpg|png|hwp|xls|xlsx|doc|docx|ppt|pptx|";
 $ALLOW_EXT_FILES = array("gif","jpg","png","hwp","xls","xlsx","doc","docx","ppt","pptx", "txt", "zip", "pdf");
+
+
+
+//로컬변수 선언 
+
+$product_ent	= array("한일그라비아", "두원상사", "제작업체2", "제작업체3", "제작업체4");
+
 
 
 foreach ($_POST as $key=>$val)
