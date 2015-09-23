@@ -4,49 +4,43 @@ include_once ($LIB_DIR."/config/config.php");
 include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/CommonDAO.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
-include_once ($SMARTY_HOME."/StorageDAO.php");
+include_once ($SMARTY_HOME."/MasterDAO.php");
+include_once ($SMARTY_HOME."/SalesDAO.php");
+include_once ($SMARTY_HOME."/ItemDAO.php");
 include_once "../../common/page.php";
 include_once "../../plugin/PHPExcel/PHPExcel.php";
 
 //req(p);
 
 $login_dao		= new LoginDAO();
-$storage_dao 	= new StorageDAO();
+$master_dao		= new MasterDAO();
+$sales_dao 		= new SalesDAO();
+$item_dao 		= new ItemDAO();
 
-$row_cnt		= $storage_dao->selectStorageCnt($orderer, $order_date, $storage_date, $factory, $giver, $taker);
-$totl_cnt		= $row_cnt[0]['totl_cnt'];
 
 $now_url		= "D0001.php";
 $write_url		= "D0001_write.php";
 $excel_url		= "fn.excel.storage.php";
 $page			= $_GET['page'];
 
-$scale 			= 20;	// 페이지당 게시물갯수
-$list_zone_num 	= 10;	// 페이지의 넘버갯수
-$zone_scale 	= $list_zone_num ;
-$total_page 	= ceil($totl_cnt/$scale);
+
+if(empty($_POST['f_date']) && empty($_POST['t_date'])) {
+	$f_date = date('Y-m-d');
+	$t_date = date('Y-m-d');
+}
 
 
-//===========================
-//현재 페이지 범위
-//===========================
-list($begin, $page) = page_begin($page, $total_page, $scale);
-
-//===========================
-//정렬순서 정하기
-//===========================
-$opt 			= "su=1";
-$show_pages 	= page_show($page, $total_page, $zone_scale, $now_url, $opt);
 
 // 메인쿼리
-//$row 			= $storage_dao->selectStorage($begin, $scale, $order_date, $storage_date, 'uid');
-$row 			= $storage_dao->selectStorage($begin, $scale, $orderer, $order_date, $storage_date, $factory, $giver, $taker);
+$row 			= $sales_dao->selectSalesTerm($f_date, $t_date, $is_deposit, $cust_nm);
 
+
+/*
 $row_factory= $storage_dao->selectStoragePerson("factory"); // 제작업체
 $row_giver	= $storage_dao->selectStoragePerson("giver"); 	// 인계자
 $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
-
 //req(u, $row_giver);
+*/
 
 ?>
 
@@ -56,7 +50,7 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height:50px;">
 	<tr>
-		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>지정판매소 판매관리 > 전화접수</b></font></td>
+		<td colspan="" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>지정판매소판매 > 전화접수</b></font></td>
 		<td></td>
 		<td></td>
 	</tr>
@@ -75,31 +69,18 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 <table  width=100% border=0 cellspacing=1 cellpadding=2 bgcolor=#f2f2f2 style="border-color: red">
 	<tr>
 		<td>
-			제작업체 : <select name="factory" id="factory">
-				<option value="" selected>업체선택</option>
-				<?php for($i=0; $i<count($row_factory); $i++) { ?>
-				<option value="<?=$row_factory[$i]['factory']?>" <?php if($row_factory[$i]['factory'] == $factory) { echo "selected";} ?>><?=$row_factory[$i]['factory']?></option>
-				<?php }?>
-			</select>
-			
-			인수자 : <select name="taker" id="taker">
+					
+			입금여부 : <select name="is_deposit" id="is_deposit">
 				<option value="" selected>선택</option>
-				<?php for($i=0; $i<count($row_taker); $i++) { ?>
-				<option value="<?=$row_taker[$i]['taker']?>" <?php if($row_taker[$i]['taker'] == $taker) { echo "selected";}?>><?=$row_taker[$i]['taker']?></option>
-				<?php }?>
+				<option value="Y">Y</option>
+				<option value="N">N</option>
 			</select>
+						
+			배송일 : <input type='text' name='f_date' id="datepicker1"  size='15' value='<?=date('Y-m-d')?>' /> ~ <input type='text' name='t_date' id="datepicker2"  size='15' value='<?=date('Y-m-d')?>' />
 			
-			인계자 : <select name="giver" id="giver">
-				<option value="" selected>선택</option>
-				<?php for($i=0; $i<count($row_giver); $i++) { ?>
-				<option value="<?=$row_giver[$i]['giver']?>" <?php if($row_giver[$i]['giver'] == $giver) { echo "selected";}?>><?=$row_giver[$i]['giver']?></option>
-				<?php }?>
-			</select>
-									
-			
-			입고일 : <input type='text' name='storage_date' id="datepicker1"  size='15' value='<?=date('Y-m-d')?>' />
-			
-			<input type=button value="일괄입고 검색" onclick="javascript:fn_submit();" class="button_50" />
+			업체명 : <input type="text" name="cust_nm" value="<?=$cust_nm?>" />
+			  
+			<input type=button value="접수내용 검색" onclick="javascript:fn_submit();" class="button_50" />
 			<input type=button value=전체보기 onclick="location.href='<?=$_SERVER['PHP_SELF']?>'" class="button_70" />			
 		</td>
 	</tr>
@@ -107,11 +88,12 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 
 <table align="right">
 	<tr>
-		<!-- 
-		 -->
 		<td><input type="button" value="전화접수" onclick="location.href='<?=$write_url?>';" class="button_70" /></td>
+		<td><input type="button" value="인쇄" onclick="fn_print();"></td>
+		<!-- 
 		<td><input type="button" value="엑셀입력" onclick="fn_excel_input();" class="button_70" /></td>
 		<td><input type="button" value="엑셀출력" onclick="fn_excel_output();" class="button_70" /></td>
+		 -->
 	</tr>
 </table>
 
@@ -120,41 +102,71 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 
 	<tr class=td_grey22  align="center" style="height:30px">	
 		<td>선택</td>	
-		<td>입고</td>
-		<td>발주일자</td>
+		<td>업체코드</td>
+		<td>판매소</td>
+		<td>배송일</td>
 		<td>봉투종류</td>
-		<td>발주량</td>
-		<td>입고일자</td>
-		<td>미입고량</td>
-		<td>입고량</td>
-		<td>제작업체</td>
-		<td>Lot No</td>
-		<td>입고처</td>
+		<td>PACK수량</td>
+		<td>PACK금액</td>
+		<td>BOX수량</td>
+		<td>BOX금액</td>
+		<td>단가</td>
+		<td>포장</td>
+		<td>입금여부</td>
+		<td>반품여부</td>
+		<td>대표자</td>
+		<td>전화</td>
+		<td>주소</td>
+		<td>영수증</td>
+		
 	</tr>
 	
 	<?php 
 		
-		$num = ($totl_cnt - ($scale*($page-1)) ) ;
+		$num = count($row) ;
 
 		for($i=0; $i<count($row); $i++) {
+			
+			$row_cust = $master_dao->selectCustomerSingleByCustId($row[$i]['cust_id']);
+			
+			$row_item = $item_dao->selectItemSingle($row[$i]['item_id']);
+			//req(u, $row_item);
+			
+			if($row_item[0]['item_type'] == 'P') {
+				$unit_price = $row_item[0]['price'];
+				$pack_price = $unit_price * $row[$i]['pack_amount'];
+				$box_price  = 0;
+			} else if($row_item[0]['item_type'] == 'B') {
+				$unit_price = $row_item[0]['price'];
+				$box_price 	= $unit_price*$row[$i]['box_amount'];
+				$pack_price = 0;
+			} else {
+				$box_price	= 0;
+				$unit_price	= 0;
+				$pack_price = 0;
+				
+			}
+			
 	?>
 	
 	<tr bgcolor="#FFFFFF" align=center style="height:23px;" onmouseover="this.bgColor='#EEEEEE'" onmouseout="this.bgColor='#FFFFFF'">							
-		
-		<!-- 
-		<td><input type="checkbox" name="u_idx[]" value="10936" /></td>
-		 -->
 		<td><?=$num?></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['use_yn']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['order_date']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['item_nm']?></a></td>	
-		<td><?=$row[$i]['order_amount']?></td>
-		<td><?=$row[$i]['storage_date']?></td>
-		<td><?=$row[$i]['not_amount']?></td>
-		<td><?=$row[$i]['end_amount']?></td>
-		<td><?=$row[$i]['factory']?></td>
-		<td><?=$row[$i]['lotno']?></td>
-		<td><?=$row[$i]['storager']?></td>
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_id']?></a></td>
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['delivery_date']?></a></td>	
+		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['item_nm']?></a></td>
+		<td><?=number_format($row[$i]['pack_amount'])?></td>
+		<td><?=number_format($pack_price)?></td>
+		<td><?=$row[$i]['box_amount']?></td>
+		<td><?=number_format($box_price)?></td>
+		<td>[<?=number_format($unit_price)?>]</td>
+		<td><?=$row[$i]['package_type']?></td>
+		<td><?=$row[$i]['deposit_yn']?></td>
+		<td><?=$row[$i]['return_yn']?></td>
+		<td><?=$row_cust[0]['ceo_nm']?></td>
+		<td><?=$row_cust[0]['tel_num']?></td>
+		<td><?=$row_cust[0]['address']?></td>
+		<td><input type="button" value="영수증출력" onclick="fn_print_receipt('<?=$row[$i]['uid']?>')" /></td>
 		 
 	</tr>
 	
@@ -202,9 +214,6 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 
 <p style="margin-top:1px" />
 
-	<!-- 페이징 -->
-	<?=$show_pages?>
-	<!-- 페이징 -->  
 
 <script type="text/javascript">
 
@@ -220,6 +229,12 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 	
 	$(function() {
 		$( "#datepicker1" ).datepicker({
+			//showOn: "button",
+			//buttonImage: "http://kccia.or.kr/img/mypage/btn_cal.gif",
+			dateFormat: 'yy-mm-dd',
+			buttonImageOnly: true
+		});
+		$( "#datepicker2" ).datepicker({
 			//showOn: "button",
 			//buttonImage: "http://kccia.or.kr/img/mypage/btn_cal.gif",
 			dateFormat: 'yy-mm-dd',
@@ -283,6 +298,15 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 		$("#form1").submit();
 	}  
 
+	function fn_print() {
+		window.print();
+	}
+
+	function fn_print_receipt(uid) {
+		//window.open("/common/print_receipt.php");
+		window.open("print_receipt.php?uid="+uid , "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=100, left=500, width=500, height=500");
+	}
+	
 
 </script> 	
 

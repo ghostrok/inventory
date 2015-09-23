@@ -178,7 +178,7 @@ class ItemDAO extends DAO
 	
 		$qry  = null;
 	
-		$qry .= " SELECT * FROM tb_storage WHERE uid = :uid ";
+		$qry .= " SELECT * FROM tb_item WHERE uid = :uid ";
 		
 		$stmt	= $this->db->prepare($qry);
 		
@@ -200,6 +200,8 @@ class ItemDAO extends DAO
 		}
 		return $ret;
 	}
+	
+	
 	
 
 	public function selectItemPerson($person) {

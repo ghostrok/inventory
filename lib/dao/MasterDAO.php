@@ -204,6 +204,33 @@ class MasterDAO extends DAO
 		return $ret;
 	}
 	
+	public function selectCustomerSingleByCustId($sales_num) {
+	
+		$qry  = null;
+	
+		$qry .= " SELECT * FROM tb_customer WHERE sales_num = :sales_num ";
+		
+		$stmt	= $this->db->prepare($qry);
+		
+		$stmt->bindValue(':sales_num',   	$sales_num,		PDO::PARAM_INT);
+	
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$res	= $stmt->execute();
+	
+		$idx 	= 0;
+		$ret 	= array();
+	
+		while($rs =  $stmt->fetch())
+		{
+			foreach($rs as $key => $value)
+			{
+				$ret[$idx][$key] = $rs[$key];
+			}
+			$idx++;
+		}
+		return $ret;
+	}
+	
 
 	/**
 	 * @param unknown $cmd

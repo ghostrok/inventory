@@ -23,11 +23,11 @@ class SalesDAO extends DAO
 	}
 		
 	
-	public function selectStorageCnt($orderer, $order_date, $storage_date, $factory, $giver, $taker) {
+	public function selectSalesCnt($orderer, $order_date, $storage_date, $factory, $giver, $taker) {
 	
 		$qry  = null;
 	
-		$qry .= " SELECT count(*) as totl_cnt FROM tb_storage WHERE 1=1 AND del_yn = 'N' ";
+		$qry .= " SELECT count(*) as totl_cnt FROM tb_sales WHERE 1=1 AND del_yn = 'N' ";
 	
 		if(isset($orderer)) {
 			$qry .= " AND orderer = :orderer ";
@@ -122,11 +122,11 @@ class SalesDAO extends DAO
 
 	
 	
-	public function selectStorage($from, $scale, $orderer, $order_date, $storage_date, $factory, $giver, $taker) {
+	public function selectSales($from, $scale, $orderer, $order_date, $storage_date, $factory, $giver, $taker) {
 	
 		$qry  = null;
 	
-		$qry .= " SELECT * FROM tb_storage WHERE 1=1 AND del_yn = 'N' ";
+		$qry .= " SELECT * FROM tb_sales WHERE 1=1 AND del_yn = 'N' ";
 	
 		
 		if(isset($orderer)) {
@@ -221,44 +221,35 @@ class SalesDAO extends DAO
 	
 	
 	
-	public function selectStorageOrder($f_order_date, $t_order_date, $factory, $item_nm, $sch_type) {
+	public function selectSalesTerm($f_date, $t_date, $deposit_yn, $cust_nm, $return_yn='') {
 		
 		$qry  = null;
 	
-		$qry .= " SELECT * FROM tb_storage WHERE 1=1 AND del_yn = 'N' ";
+		$qry .= " SELECT * FROM tb_sales WHERE 1=1 AND del_yn = 'N' ";
 	
-		if($sch_type == 'order') {
-			if(isset($f_order_date) && isset($t_order_date)) {
-				$qry .= " AND order_date between :f_order_date AND :t_order_date ";
-			}
-			
-		} else if($sch_type == 'storage') {
-			if(isset($f_order_date) && isset($t_order_date)) {
-				$qry .= " AND storage_date between :f_order_date AND :t_order_date ";
-			}
+		
+		if(isset($f_date) && isset($t_date)) {
+			$qry .= " AND delivery_date between :f_date AND :t_date ";
 		}
 		
-	
-		if(!empty($storage_date)) {
-			$qry .= " AND storage_date = :storage_date ";
+		if(!empty($deposit_yn)) {
+			$qry .= " AND deposit_yn = :deposit_yn ";
 		}
 	
-		if(!empty($factory)) {
-			$qry .= " AND factory = :factory ";
+		if(!empty($cust_nm)) {
+			//$qry .= " AND cust_nm LIKE '%'||:cust_nm||'%' ";
+			$qry .= " AND cust_nm LIKE :cust_nm ";
 		}
 	
-		if(!empty($item_nm)) {
-			$qry .= " AND item_nm = :item_nm ";
+		if(!empty($return_yn)) {
+			$qry .= " AND return_yn = :return_yn ";
 		}
-	
+		
+		
 		if(1 == 1) {
 			$qry .= " ORDER BY uid DESC ";
 		}
-	
-		if(isset($from) && isset($scale)) {
-			$qry	.=" LIMIT :from , :scale ";
-		}
-	
+
 		//echo $qry;
 		
 		##### Prepare Statement #####
@@ -267,20 +258,22 @@ class SalesDAO extends DAO
 	
 		##### Binding Options #####
 	
-		if(isset($f_order_date) && isset($t_order_date)) {
-			$stmt->bindValue(':f_order_date',   	$f_order_date,	PDO::PARAM_STR);
-			$stmt->bindValue(':t_order_date',   	$t_order_date,	PDO::PARAM_STR);
+		if(isset($f_date) && isset($t_date)) {
+			$stmt->bindValue(':f_date',   	$f_date,	PDO::PARAM_STR);
+			$stmt->bindValue(':t_date',   	$t_date,	PDO::PARAM_STR);
 		}
 	
-		if(!empty($factory)) {
-			$stmt->bindValue(":factory", 			$factory,		PDO::PARAM_STR);
+		if(!empty($deposit_yn)) {
+			$stmt->bindValue(":deposit_yn",			$deposit_yn,	PDO::PARAM_STR);
 		}
 
-		if(!empty($item_nm)) {
-			$stmt->bindValue(":item_nm", 			$item_nm,		PDO::PARAM_STR);
+		if(!empty($cust_nm)) {
+			$stmt->bindValue(":cust_nm", 			$cust_nm,		PDO::PARAM_STR);
 		}
 	
-		//echo $qry;
+		if(!empty($return_yn)) {
+			$stmt->bindValue(":return_yn", 			$return_yn,		PDO::PARAM_STR);
+		}
 	
 		##### FetchMode #####
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -305,11 +298,11 @@ class SalesDAO extends DAO
 
 	
 	
-	public function selectStorageSingle($uid) {
+	public function selectSalesSingle($uid) {
 	
 		$qry  = null;
 	
-		$qry .= " SELECT * FROM tb_storage WHERE uid = :uid ";
+		$qry .= " SELECT * FROM tb_sales WHERE uid = :uid ";
 		
 		$stmt	= $this->db->prepare($qry);
 		
@@ -333,7 +326,7 @@ class SalesDAO extends DAO
 	}
 	
 
-	public function selectStoragePerson($person) {
+	public function selectSalesPerson($person) {
 	
 		$qry  = null;
 	
@@ -341,7 +334,7 @@ class SalesDAO extends DAO
 		
 		if($person == 'giver') {
 		
-			$qry .= " SELECT giver FROM tb_storage ";
+			$qry .= " SELECT giver FROM tb_sales ";
 			$qry .= " GROUP BY $person ";
 		
 		} else if($person == 'taker') {
@@ -355,14 +348,9 @@ class SalesDAO extends DAO
 		} else if($person == 'item_nm') {
 			$qry .= " SELECT item_nm FROM tb_storage ";
 			$qry .= " GROUP BY $person ";
-			
 		}
 		
-		//echo $qry;
-		
 		$stmt	= $this->db->prepare($qry);
-	
-		//$stmt->bindValue(':person',   	$person,		PDO::PARAM_STR);
 	
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$res	= $stmt->execute();
@@ -382,19 +370,18 @@ class SalesDAO extends DAO
 	}
 	
 	
-	
-	public function insertStorage($orderer, $order_date, $item_nm, $order_amount, $not_amount, $end_amount, $factory, $lotno, $storager, $storage_date, $taker, $giver, $use_yn)
+	public function insertSales($cust_nm, $cust_id, $delivery_date, $gubun, $item_nm, $item_id, $pack_amount, $box_amount, $package_type, $del_yn='N', $deposit_yn='N', $print_yn='N', $return_yn='N')
 	{
 		$qry  = null;
-		$qry .= " INSERT tb_storage 																					";
+		$qry .= " INSERT tb_sales 																						";
 		$qry .= " (																										";
-		$qry .= "   orderer, order_date, item_nm, order_amount, not_amount, end_amount, factory, lotno, 				"; 
-		$qry .= "   storager, storage_date, taker,  giver,  use_yn, regdate												";
+		$qry .= "   cust_nm, cust_id, delivery_date, gubun, item_nm, item_id, pack_amount, box_amount,	 				"; 
+		$qry .= "   package_type, del_yn, deposit_yn, print_yn, return_yn, regdate, moddate								";
 		$qry .= "  ) 																									";	
 		$qry .= " VALUES 																								";
 		$qry .= " (																										";
-		$qry .= "   :orderer, :order_date, :item_nm, :order_amount, :not_amount, :end_amount, :factory, :lotno,					"; 
-		$qry .= "   :storager, :storage_date, :taker, :giver, :use_yn, now()											";
+		$qry .= "   :cust_nm, :cust_id, :delivery_date, :gubun, :item_nm, :item_id, :pack_amount, :box_amount,			"; 
+		$qry .= "   :package_type, :del_yn, :deposit_yn, :print_yn, :return_yn, now(), now()							";
 		$qry .= " )																										";
 		
 		//echo $qry;
@@ -403,22 +390,22 @@ class SalesDAO extends DAO
 	
 		$stmt	= $this->db->prepare($qry);
 
-		$stmt->bindValue(':orderer'			, $orderer,   		PDO::PARAM_STR);
-		$stmt->bindValue(':order_date'		, $order_date,   	PDO::PARAM_STR);
-		$stmt->bindValue(':item_nm'			, $item_nm,   		PDO::PARAM_STR);
-		$stmt->bindValue(':order_amount'	, $order_amount,   	PDO::PARAM_STR);
-		$stmt->bindValue(':not_amount'		, $not_amount,  	PDO::PARAM_INT);
-		$stmt->bindValue(':end_amount'		, $end_amount, 		PDO::PARAM_INT);
-		$stmt->bindValue(':factory'			, $factory, 		PDO::PARAM_STR);
-		$stmt->bindValue(':lotno'			, $lotno,			PDO::PARAM_INT);
 		
-		$stmt->bindValue(':storager'		, $storager,   		PDO::PARAM_STR);
-		$stmt->bindValue(':storage_date'	, $storage_date, 	PDO::PARAM_STR);
-		$stmt->bindValue(':taker'			, $taker,   		PDO::PARAM_STR);
-		$stmt->bindValue(':giver'			, $giver,   		PDO::PARAM_STR);
-		$stmt->bindValue(':use_yn'			, $use_yn,   		PDO::PARAM_STR);
+		$stmt->bindValue(':cust_nm'			, $cust_nm,   		PDO::PARAM_STR);
+		$stmt->bindValue(':cust_id'			, $cust_id,   		PDO::PARAM_INT);
+		$stmt->bindValue(':delivery_date'	, $delivery_date,	PDO::PARAM_STR);
+		$stmt->bindValue(':gubun'			, $gubun,   		PDO::PARAM_STR);
+		$stmt->bindValue(':item_nm'			, $item_nm,  		PDO::PARAM_INT);
+		$stmt->bindValue(':item_id'			, $item_id, 		PDO::PARAM_INT);
+		$stmt->bindValue(':pack_amount'		, $pack_amount, 	PDO::PARAM_INT);
+		$stmt->bindValue(':box_amount'		, $box_amount,		PDO::PARAM_INT);
+		
+		$stmt->bindValue(':package_type'	, $package_type, 	PDO::PARAM_STR);
+		$stmt->bindValue(':del_yn'			, $del_yn,   		PDO::PARAM_STR);
+		$stmt->bindValue(':deposit_yn'		, $deposit_yn,   	PDO::PARAM_STR);
+		$stmt->bindValue(':print_yn'		, $print_yn,   		PDO::PARAM_STR);
+		$stmt->bindValue(':return_yn'		, $return_yn,   	PDO::PARAM_STR);
 
-	
 		try {
 				
 			$stmt->execute();
@@ -440,43 +427,41 @@ class SalesDAO extends DAO
 	}
 	
 	
-	/**
-	 * @param unknown $idx
-	 * @return unknown
-	 * 
-	 * 일괄입고 수정 
-	 */
-	public function updateStorage($uid, $orderer, $order_date, $item_nm, $order_amount, $not_amount, $end_amount, $factory, $lotno, $storager, $storage_date, $taker, $giver, $use_yn)
+
+	public function updateSales($uid, $cust_nm, $cust_id, $delivery_date, $gubun, $item_nm, $item_id, $pack_amount, $box_amount, $package_type, $del_yn, $deposit_yn, $print_yn, $return_yn)
 	{
 		$qry  = null;
 		
-		$qry .= " UPDATE tb_storage SET ";
-		$qry .= " orderer = :orderer, order_date = :order_date, item_nm = :item_nm, order_amount = :order_amount, not_amount = :not_amount, end_amount = :end_amount, factory = :factory, lotno = :lotno,	";
-		$qry .= " storager = :storager, storage_date = :storage_date, taker = :taker,  giver = :giver,  use_yn = :use_yn											";		
+		$qry .= " UPDATE tb_sales SET ";
+		$qry .= " cust_nm=:cust_nm, cust_id=:cust_id, delivery_date=:delivery_date, gubun=:gubun, item_nm=:item_nm, ";
+		$qry .= " item_id=:item_id, pack_amount=:pack_amount, box_amount=:box_amount, package_type=:package_type	";
+		
+		if(!empty($del_yn)) 	$qry .= " , del_yn=:del_yn 															";
+		if(!empty($deposit_yn)) $qry .= " , deposit_yn=:deposit_yn 													";
+		if(!empty($print_yn)) 	$qry .= " , print_yn=:print_yn 														";
+		if(!empty($return_yn)) 	$qry .= " , return_yn=:return_yn 													";
+		
 		$qry .= " WHERE uid = :uid  																																					";
 	
-		echo $qry;
-		
 		$this->db->beginTransaction();
-	
 		$stmt	= $this->db->prepare($qry);
 	
 		$stmt->bindValue(':uid'				, $uid,   			PDO::PARAM_INT);
+		$stmt->bindValue(':cust_nm'			, $cust_nm,   		PDO::PARAM_STR);
+		$stmt->bindValue(':cust_id'			, $cust_id,   		PDO::PARAM_INT);
+		$stmt->bindValue(':delivery_date'	, $delivery_date,	PDO::PARAM_STR);
+		$stmt->bindValue(':gubun'			, $gubun,   		PDO::PARAM_STR);
+		$stmt->bindValue(':item_nm'			, $item_nm,  		PDO::PARAM_INT);
+		$stmt->bindValue(':item_id'			, $item_id, 		PDO::PARAM_INT);
+		$stmt->bindValue(':pack_amount'		, $pack_amount, 	PDO::PARAM_INT);
+		$stmt->bindValue(':box_amount'		, $box_amount,		PDO::PARAM_INT);
+		$stmt->bindValue(':package_type'	, $package_type, 	PDO::PARAM_STR);
+
 		
-		$stmt->bindValue(':orderer'			, $orderer,   		PDO::PARAM_STR);
-		$stmt->bindValue(':order_date'		, $order_date,   	PDO::PARAM_STR);
-		$stmt->bindValue(':item_nm'			, $item_nm,   		PDO::PARAM_STR);
-		$stmt->bindValue(':order_amount'	, $order_amount,   	PDO::PARAM_STR);
-		$stmt->bindValue(':not_amount'		, $not_amount,  	PDO::PARAM_INT);
-		$stmt->bindValue(':end_amount'		, $end_amount, 		PDO::PARAM_INT);
-		$stmt->bindValue(':factory'			, $factory, 		PDO::PARAM_STR);
-		$stmt->bindValue(':lotno'			, $lotno,			PDO::PARAM_INT);
-		
-		$stmt->bindValue(':storager'		, $storager,   		PDO::PARAM_STR);
-		$stmt->bindValue(':storage_date'	, $storage_date, 	PDO::PARAM_STR);
-		$stmt->bindValue(':taker'			, $taker,   		PDO::PARAM_STR);
-		$stmt->bindValue(':giver'			, $giver,   		PDO::PARAM_STR);
-		$stmt->bindValue(':use_yn'			, $use_yn,   		PDO::PARAM_STR);
+		if(!empty($del_yn)) 	$stmt->bindValue(':del_yn'			, $del_yn,   		PDO::PARAM_STR);
+		if(!empty($deposit_yn)) $stmt->bindValue(':deposit_yn'		, $deposit_yn,   	PDO::PARAM_STR);
+		if(!empty($print_yn)) 	$stmt->bindValue(':print_yn'		, $print_yn,   		PDO::PARAM_STR);
+		if(!empty($return_yn)) 	$stmt->bindValue(':return_yn'		, $return_yn,   	PDO::PARAM_STR);
 		
 		
 		try {
@@ -500,11 +485,11 @@ class SalesDAO extends DAO
 	}
 	
 	
-	public function deleteStorage($uid) {
+	public function deleteSales($uid) {
 		
 		$qry  = null;
 		
-		$qry .= " UPDATE tb_storage SET del_yn = 'Y' 	";
+		$qry .= " UPDATE tb_sales SET del_yn = 'Y' 	";
 		$qry .= " WHERE uid = :uid 			";
 		
 		$this->db->beginTransaction();
@@ -533,6 +518,7 @@ class SalesDAO extends DAO
 		return $affected_cnt;		
 		
 	}
+	
 	
 
 	
@@ -597,7 +583,7 @@ class SalesDAO extends DAO
 			$stmt->bindValue(':order',   	$order,		PDO::PARAM_STR);
 		}
 	
-		echo $qry;
+		//echo $qry;
 	
 		##### FetchMode #####
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);

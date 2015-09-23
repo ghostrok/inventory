@@ -3,18 +3,32 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/lib/config/config.php");
 include_once ($LIB_DIR."/config/config.php");
 include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
-include_once ($SMARTY_HOME."/StorageDAO.php");
+include_once ($SMARTY_HOME."/SalesDAO.php");
+include_once ($SMARTY_HOME."/MasterDAO.php");
+include_once ($SMARTY_HOME."/ItemDAO.php");
 
 $login_dao 	= new LoginDAO();
-$storage_dao = new StorageDAO();
+$sales_dao 	= new SalesDAO();
+$master_dao	= new MasterDAO();
+$item_dao 	= new ItemDAO();
+
 
 if($cmd == 'edit') {
-	$row = $storage_dao->selectStorageSingle($uid);
+	$row = $sales_dao->selectSalesSingle($uid);
 	//req(u, $row);
 }
 
 
+##### SELECT 조건 가져오기 #####
+
+$row_cust = $master_dao->selectCustomer($from, $scale, $sch_gu, $sch_dong, $order, $cust_type);
+
+$row_item = $item_dao->selectItem($from, $scale, $item_nm);
+
+//req(u, $row_item);
+
 ?>
+
 
 <? include "../../pub/header.php"; ?>
 
@@ -22,7 +36,7 @@ if($cmd == 'edit') {
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" style="height:30px;">
 	<tr>
-		<td width="80%" colspan="3" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>지정판매소 판매관리 > 전화접수[입력]</b></font></td>
+		<td width="80%" colspan="3" valign="bottom"><font color="#08519C" style="size:11px;font-weight:bold"><b>지정판매소판매 > 전화접수[입력]</b></font></td>
 		<td width="10%" ></td>
 		<td width="10%" ></td>
 	</tr>
@@ -38,7 +52,7 @@ if($cmd == 'edit') {
 
 <form name="form1" method="post" action="" id="form1" enctype="multipart/form-data">	
 <input type="hidden" name="cmd" 	 		 value="<?=$cmd?>" />
-<input type="hidden" name="menu_id"	 		 value="B0001" />
+<input type="hidden" name="menu_id"	 		 value="D0001" />
 <input type="hidden" name="uid" 	 		 value="<?=$row[0]['uid']?>" />
 <input type="hidden" name="file_category" 	 value="" />
 <input type="hidden" name="tbl_nm" 		 	 value= />
@@ -52,66 +66,97 @@ if($cmd == 'edit') {
 		<table width=100% border=0 cellspacing=1 cellpadding=2 bgcolor=''>
 
 			<tr class=td_white>
-				<td width="80px"><b>발주처</b></td>
-				<td><input type='text' name='orderer' id="orderer" size='20' value='<?=$row[0]['orderer']?>' /></td>
-			</tr>
-
-			<tr class=td_white>
-				<td width="80px"><b>발주일자</b></td>
-				<td><input type='text' name='order_date' id="datepicker1" size='20' value='<?=$row[0]['order_date']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>봉투종류 </b></td>
-				<td><input type='text' name='item_nm' size='20' value='<?=$row[0]['item_nm']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>발주량</b></td>
-				<td><input type='text' name='order_amount' size='20' value='<?=$row[0]['order_amount']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>미입고량</b></td>
-				<td><input type='text' name='not_amount' size='20' value='<?=$row[0]['not_amount']?>' /></td>
-				<td width="80px"><b>입고량</b></td>
-				<td><input type='text' name='end_amount' size='20' value='<?=$row[0]['end_amount']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>제작업체</b></td>
-				<td><input type='text' name='factory' size='20' value='<?=$row[0]['factory']?>' /></td>
-				<td width="80px"><b>Lot No</b></td>
-				<td><input type='text' name='lotno' size='20' value='<?=$row[0]['lotno']?>' /></td>
-			</tr>
-
-			<tr class=td_white>
-				<td width="80px"><b>입고처</b></td>
-				<td><input type='text' name='storager' size='50' value='<?=$row[0]['storager']?>' /></td>
-			</tr>
-
-			<tr class=td_white>
-				<td width="80px"><b>입고일</b></td>
-				<td><input type='text' name='storage_date' size='50' id="datepicker2" value='<?=$row[0]['storage_date']?>' /></td>
-			</tr>
-			
-			<tr class=td_white>
-				<td width="80px"><b>인수자</b></td>
-				<td><input type='text' name='taker' size='20' value='<?=$row[0]['taker']?>' /></td>
-				<td width="80px"><b>인계자</b></td>
-				<td><input type='text' name='giver' size='20' value='<?=$row[0]['giver']?>' /></td>
-			</tr>
-						
-			 
-			<tr class=td_white>
-				<td><b>입고여부</b></td>
+				<td width="80px"><b>판매소</b></td>
 				<td>
-					<input type=radio name=use_yn value='Y' <? if($row[0]['use_yn'] == 'Y') {?>  checked="checked" <?}?> />Y  
-					<input type=radio name=use_yn value='N' <? if($row[0]['use_yn'] == 'N') {?>  checked="checked" <?}?> />N
+					<select name="cust_nm" id="cust_nm">
+						<option value="" >선택</option>
+						<?php for($i=0; $i<count($row_cust); $i++) {?>						
+						<option value="<?=$row_cust[$i]['sales_num']?>|<?=$row_cust[$i]['cust_nm']?>"<?php if($row_cust[$i]['cust_nm'] == $row[0]['cust_nm']) { echo "selected";}?>><?=$row_cust[$i]['cust_nm']?></option>
+						<?php }?>
+					</select>
+				</td>
+			</tr>
+
+			<tr class=td_white>
+				<td width="80px"><b>배송일자</b></td>
+				<td><input type='text' name='delivery_date' id="datepicker1" size='20' value='<?=$row[0]['delivery_date']?>' /></td>
+			</tr>
+			
+			
+			<tr class=td_white>
+				<td width="80px"><b>봉투종류</b></td>
+				<td>
+					<select name="item_nm" id="item_nm">
+						<option value="" selected>선택</option>
+						<?php for($i=0; $i<count($row_item); $i++) {?>
+						<option value="<?=$row_item[$i]['uid']?>|<?=$row_item[$i]['item_nm']?>" <?php if($row_item[$i]['item_nm'] == $row[0]['item_nm']) { echo "selected";}?>><?=$row_item[$i]['item_nm']?></option>
+						<?php }?>
+					</select>
 				</td>
 			</tr>
 			
+			<tr class=td_white>
+				<td width="80px"><b>구분</b></td>
+				<td>
+					<select name="gubun" id="gubun">
+						<option value="">선택</option>
+						<option value="O" <?php if($row[0]['gubun'] == 'O') { echo "selected";}?>>사무실</option>
+						<option value="C" <?php if($row[0]['gubun'] == 'C') { echo "selected";}?>>편의점</option>
+						<option value="E" <?php if($row[0]['gubun'] == 'E') { echo "selected";}?>>기타</option>
+					</select>
+				</td>
+			</tr>
 
+
+			<tr class=td_white>
+				<td><b>PACK/BOX</b></td>
+				<td>
+					<input type=radio name=input_type class="input_type" value='P'/><span class="p_text">PACK선택</span>  
+					<input type=radio name=input_type class="input_type" value='B'/><span class="b_text">BOX선택</span>  
+
+				</td>
+			</tr>
+			
+			<tr class=td_white>
+				<td width="80px"><b><span class="p_text">PACK수량</span></b></td>
+				<td><input type='text' name='pack_amount' size='20' readonly value='<?=$row[0]['pack_amount']?>' /></td>
+				
+				<td width="80px"><b><span class="b_text">BOX수량</span></b></td>
+				<td><input type='text' name='box_amount' size='20' readonly value='<?=$row[0]['box_amount']?>' /></td>
+			</tr>
+			
+			<tr class=td_white>
+				<td><b>포장상태</b></td>
+				<td>
+					<input type=radio name="package_type" value='B' <? if($row[0]['package_type'] == 'B') {?>  checked="checked" <?}?> />B  
+					<input type=radio name="package_type" value='P' <? if($row[0]['package_type'] == 'P') {?>  checked="checked" <?}?> />P
+					<input type=radio name="package_type" value='E' <? if($row[0]['package_type'] == 'E') {?>  checked="checked" <?}?> />E
+				</td>
+			</tr>
+			
+			<?php 
+			if($cmd =='edit') {
+			?>
+			<tr class=td_white>
+				<td><b>입금여부</b></td>
+				<td>
+					<input type=radio name="deposit_yn" value='Y' <? if($row[0]['deposit_yn'] == 'Y') {?>  checked="checked" <?}?> />Y  
+					<input type=radio name="deposit_yn" value='N' <? if($row[0]['deposit_yn'] == 'N') {?>  checked="checked" <?}?> />N
+				</td>
+			</tr>
+
+			<tr class=td_white>
+				<td><b>반품여부</b></td>
+				<td>
+					<input type=radio name="return_yn" value='Y' <? if($row[0]['return_yn'] == 'Y') {?>  checked="checked" <?}?> />Y  
+					<input type=radio name="return_yn" value='N' <? if($row[0]['return_yn'] == 'N') {?>  checked="checked" <?}?> />N
+				</td>
+			</tr>
+			<?php 
+			}
+			?>
+			
+						
 			 
 		</table>			
 	</td>
@@ -142,7 +187,27 @@ if($cmd == 'edit') {
 
 
 
+
 <script type="text/javascript">
+
+	$(".input_type").change(
+		function(){
+
+			$("input[name='pack_amount']").attr("readonly", true);
+			$("input[name='box_amount']").attr("readonly", true);
+			$(".p_text").css('color', '');
+			$(".b_text").css('color', '');
+			
+			if($(this).val() == 'P') {
+				$("input[name='pack_amount']").attr("readonly", false);
+				$(".p_text").css('color', 'red');
+						
+			} else if($(this).val() == 'B') {
+				$("input[name='box_amount']").attr("readonly", false);
+				$(".b_text").css('color', 'red');
+			} 				           
+		}
+	);     
 
 	
 	$(function() {
@@ -177,53 +242,6 @@ if($cmd == 'edit') {
 		{
 			err += " - 상호명이 비어있습니다. \n";
 		}
-
-		if( $("input[name='regist_num']").val() == '')
-		{
-			err += " - 사업자번호가 비어있습니다. \n";
-		}
-
-		if( $("input[name='tel_num']").val() == '')
-		{
-			err += " - 사업자전화가 비어있습니다. \n";
-		}
-		
-		if( $("input[name='ceo_nm']").val() == '')
-		{
-			err += " - 대표자명이 비어있습니다. \n";
-		}
-		
-		if( $("input[name='ceo_tel_num']").val() == '')
-		{
-			err += " - 대표자 전화번호가 비어있습니다. \n";
-		}
-
-		if( $("input[name='address_new']").val() == '')
-		{
-			err += " - 신주소가 비어있습니다. \n";
-		}
-
-		if( $("input[name='address']").val() == '')
-		{
-			err += " - 주소가 비어있습니다. \n";
-		}
-
-		if( $("input[name='applydate']").val() == '')
-		{
-			err += " - 지정일자가 비어있습니다. \n";
-		}
-
-		if( $("input[name='moddate']").val() == '')
-		{
-			err += " - 변경일자가 비어있습니다. \n";
-		}
-		
-		if( $("textarea[name='moddate_rsn']").val() == '')
-		{
-			err += " - 변경사유가 비어있습니다. \n";
-		}
-		
-
 		
 		if(err =='')
 		{	
@@ -320,7 +338,7 @@ if($cmd == 'edit') {
 
 		var err = '';
 
-		if (confirm("[" + $("input[name='item_nm']").val() + "] 의 정보를 삭제 하시겠습니까?")){
+		if (confirm("정보를 삭제 하시겠습니까?")){
 			
 			if( $("input[name='cmd']").val() == '')
 			{
