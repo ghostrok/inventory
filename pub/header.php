@@ -15,8 +15,8 @@
 
 
 <!-- Calendar UI -->
-<script type="text/javascript" src="/js/common/jquery.ui.core.js"></script> 
-<script type="text/javascript" src="/js/common/jquery.ui.widget.js"></script> 
+<script type="text/javascript" src="/js/common/jquery.ui.core.js"></script>
+<script type="text/javascript" src="/js/common/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="/js/common/jquery.ui.datepicker.js"></script>
 <script type="text/javascript" src="/js/common/jquery.bpopup.min.js"></script>
 

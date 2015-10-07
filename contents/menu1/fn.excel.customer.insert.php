@@ -25,7 +25,7 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
     $highestRow         = $worksheet->getHighestRow(); // e.g. 10
     $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
     $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
-    $nrColumns = ord($highestColumn) - 64;
+    $nrColumns 			= ord($highestColumn) - 64;
 
     
     $affect_cnt = 0;

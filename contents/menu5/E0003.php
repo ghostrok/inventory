@@ -152,10 +152,10 @@ $row_taker	= $storage_dao->selectStoragePerson("taker"); 	// 인수자
 	
 	<tr bgcolor="#FFFFFF" align=center style="height:23px;" onmouseover="this.bgColor='#EEEEEE'" onmouseout="this.bgColor='#FFFFFF'">							
 		<td><?=$num?></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_id']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['cust_nm']?></a></td>
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['delivery_date']?></a></td>	
-		<td><a href="<?=$write_url?>?cmd=edit&uid=<?=$row[$i]['uid']?>"><?=$row[$i]['item_nm']?></a></td>
+		<td><?=$row[$i]['cust_id']?></td>
+		<td><?=$row[$i]['cust_nm']?></td>
+		<td><?=$row[$i]['delivery_date']?></td>	
+		<td><?=$row[$i]['item_nm']?></td>
 		<td><?=number_format($row[$i]['pack_amount'])?></td>
 		<td><?=number_format($pack_price)?></td>
 		<td><?=$row[$i]['box_amount']?></td>

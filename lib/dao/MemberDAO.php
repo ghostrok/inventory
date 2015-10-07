@@ -121,9 +121,23 @@ class MemberDAO extends DAO
 		$this->db->free ();		 		
 		return $ret;
 	}
-	
-	
-	
+
+
+	/**
+	 * @param $begin
+	 * @param $scale
+	 * @param string $search_key
+	 * @param string $search_val
+	 * @param string $order
+	 * @param string $desc
+	 * @param string $cmd
+	 * @param string $status
+	 * @param string $from_date
+	 * @param string $end_date
+     * @return array
+     */
+
+
 	public function getMemberList ($begin, $scale, $search_key='', $search_val='', $order='uid', $desc ='DESC' ,$cmd='row', $status='Y', $from_date='', $end_date='')
 	{
 		
@@ -847,8 +861,8 @@ class MemberDAO extends DAO
 		return 1;
 		
 	}
-	
-	
+
+
 	
 	public function getTotalCount ()
 	{

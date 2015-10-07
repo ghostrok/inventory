@@ -297,6 +297,229 @@ class SalesDAO extends DAO
 	
 
 	
+	public function selectSalesStatics($sch_date, $gubun) {
+	
+		$qry  = null;
+	
+		$qry .= " SELECT   s.item_nm												";
+		
+		$qry .= " , s.return_yn														";
+		$qry .= " , s.delivery_date													";
+		$qry .= " , s.item_id														";
+		$qry .= " , i.price	as unit_price											";
+		$qry .= " , SUM(s.pack_amount) AS pack_cnt									";
+		$qry .= " , SUM(s.box_amount) AS box_cnt									";
+		$qry .= " , SUM(s.pack_amount)+SUM(s.box_amount) AS totl_cnt				";
+		$qry .= " , (SUM(s.pack_amount)+SUM(s.box_amount))*i.price AS totl_price	";
+		$qry .= " FROM tb_sales s													";
+		$qry .= " LEFT OUTER JOIN tb_item i											";
+		$qry .= " ON s.item_id = i.uid												";
+		$qry .= " WHERE 1 = 1														";
+		
+		if(!empty($sch_date)) {
+			$qry .= " AND delivery_date = :sch_date					 				";
+		}		
+		
+		if(!empty($gubun)) {
+			$qry .= " AND gubun = :gubun					 						";
+		}
+		
+		$qry .= " GROUP BY item_nm													";
+		
+		//echo $qry;
+	
+		##### Prepare Statement #####
+		$stmt	= $this->db->prepare($qry);
+	
+		##### Binding Options #####
+		if(!empty($sch_date)) {
+			$stmt->bindValue(':sch_date',   	$sch_date,	PDO::PARAM_STR);
+		}
+	
+		if(!empty($gubun)) {
+			$stmt->bindValue(":gubun",			$gubun,	PDO::PARAM_STR);
+		}
+		
+		##### FetchMode #####
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+	
+		##### Execute #####
+		$res	= $stmt->execute();
+	
+		$idx 	= 0;
+		$ret 	= array();
+	
+		while($rs =  $stmt->fetch())
+		{
+			foreach($rs as $key => $value)
+			{
+				$ret[$idx][$key] = $rs[$key];
+			}
+			$idx++;
+		}
+		return $ret;
+	}
+	
+	public function selectSalesStaticsTerm($f_date, $t_date, $gubun) {
+	
+		$qry  = null;
+
+		/*
+		SELECT   s.delivery_date
+		, s.item_nm
+		, s.item_id
+		, i.price
+		, s.return_yn
+		, SUM(s.pack_amount) AS pack_cnt
+		, SUM(s.box_amount) AS box_cnt
+		, SUM(s.pack_amount)+SUM(s.box_amount) AS totl_cnt
+		, (SUM(s.pack_amount)+SUM(s.box_amount))*i.price AS totl_price
+		FROM tb_sales s
+		LEFT OUTER JOIN tb_item i
+		ON s.item_id = i.uid
+		WHERE 1 = 1
+		-- 조회일자, 구분
+		GROUP BY s.return_yn, s.delivery_date
+		ORDER BY s.delivery_date DESC
+		*/
+		
+		$qry .= " SELECT   s.item_nm												";
+		$qry .= " , s.return_yn														";
+		$qry .= " , s.delivery_date													";
+		$qry .= " , s.item_id														";
+		$qry .= " , i.price	as unit_price											";
+		$qry .= " , SUM(s.pack_amount) AS pack_cnt									";
+		$qry .= " , SUM(s.box_amount) AS box_cnt									";
+		$qry .= " , SUM(s.pack_amount)+SUM(s.box_amount) AS totl_cnt				";
+		$qry .= " , (SUM(s.pack_amount)+SUM(s.box_amount))*i.price AS totl_price	";
+		$qry .= " FROM tb_sales s													";
+		$qry .= " LEFT OUTER JOIN tb_item i											";
+		$qry .= " ON s.item_id = i.uid												";
+		$qry .= " WHERE 1 = 1														";
+		
+		if(!empty($f_date) && !empty($t_date)) {
+			$qry .= " AND delivery_date between :f_date AND :t_date	 				";
+		}		
+		
+		if(!empty($gubun)) {
+			$qry .= " AND gubun = :gubun					 						";
+		}
+
+		$qry .= " GROUP BY s.return_yn, s.delivery_date								";
+		$qry .= " ORDER BY s.delivery_date DESC										";
+		
+		//echo $qry;
+	
+		##### Prepare Statement #####
+		$stmt	= $this->db->prepare($qry);
+	
+		##### Binding Options #####
+		if(!empty($f_date) && !empty($t_date)) {
+			$stmt->bindValue(':f_date',   	$f_date,	PDO::PARAM_STR);
+			$stmt->bindValue(':t_date',   	$t_date,	PDO::PARAM_STR);
+		}
+	
+		if(!empty($gubun)) {
+			$stmt->bindValue(":gubun",			$gubun,	PDO::PARAM_STR);
+		}
+		
+		##### FetchMode #####
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+	
+		##### Execute #####
+		$res	= $stmt->execute();
+	
+		$idx 	= 0;
+		$ret 	= array();
+	
+		while($rs =  $stmt->fetch())
+		{
+			foreach($rs as $key => $value)
+			{
+				$ret[$idx][$key] = $rs[$key];
+			}
+			$idx++;
+		}
+		return $ret;
+	}
+	
+	
+	
+	/**
+	 * @param unknown $f_date
+	 * @param unknown $return_yn
+	 * @return Ambigous <multitype:, unknown>
+	 * 수불관리 > 년 판매현황
+	 */
+	public function selectSalesStaticsYear($f_date, $return_yn) {
+	
+		$qry  = null;
+
+		$qry .= " SELECT   ";
+		$qry .= "          s.item_nm";
+		$qry .= "        , s.item_id";
+		$qry .= "        , i.price";
+		$qry .= "        , s.return_yn";
+		$qry .= " 	   , SUM(s.pack_amount) AS pack_cnt ";
+		$qry .= "        , SUM(s.box_amount) AS box_cnt";
+		$qry .= "        , SUM(s.pack_amount)+SUM(s.box_amount) AS totl_cnt";
+		$qry .= "        , (SUM(s.pack_amount)+SUM(s.box_amount))*i.price AS totl_price";
+		$qry .= "        , SUBSTRING(delivery_date, 6, 2) AS month  ";
+		$qry .= "        , SUBSTRING(delivery_date, 1, 4) AS year";
+		$qry .= " FROM tb_sales s";
+		$qry .= " LEFT OUTER JOIN tb_item i ";
+		$qry .= " ON s.item_id = i.uid";
+		$qry .= " WHERE 1 = 1";
+		
+		if(!empty($f_date)) {
+			$qry .= " AND SUBSTRING(delivery_date, 1, 4) = :f_date ";
+		}
+	
+		
+		if(!empty($return_yn)) {
+			$qry .= " AND return_yn = :return_yn ";
+		}
+	
+		$qry .= " GROUP BY SUBSTRING(delivery_date, 6, 2)";
+		$qry .= " ORDER BY s.delivery_date DESC ";
+		
+		//echo $qry;
+	
+		##### Prepare Statement #####
+		$stmt	= $this->db->prepare($qry);
+	
+		##### Binding Options #####
+		if(!empty($f_date)) {
+			$stmt->bindValue(':f_date',   	$f_date,	PDO::PARAM_STR);
+		}
+	
+		if(!empty($return_yn)) {
+			$stmt->bindValue(":return_yn",	$return_yn,	PDO::PARAM_STR);
+		}
+	
+		##### FetchMode #####
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+	
+		##### Execute #####
+		$res	= $stmt->execute();
+	
+		$idx 	= 0;
+		$ret 	= array();
+	
+		while($rs =  $stmt->fetch())
+		{
+			foreach($rs as $key => $value)
+			{
+				$ret[$idx][$key] = $rs[$key];
+			}
+			$idx++;
+		}
+		return $ret;
+	}
+	
+	
+	
+	
 	
 	public function selectSalesSingle($uid) {
 	

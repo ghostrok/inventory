@@ -9,7 +9,6 @@ include_once ($SMARTY_HOME."/MasterDAO.php");
 $login_dao 	= new LoginDAO();
 $master_dao = new MasterDAO();
 
-
 // Case cmd = edit, write, del
 //req(r);
 

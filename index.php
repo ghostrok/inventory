@@ -3,26 +3,27 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/lib/config/config.php");
 include_once ($LIB_DIR."/config/config.php");
 include_once ($LIB_DIR."/function/function_common.php");
 include_once ($SMARTY_HOME."/LoginDAO.php");
-$login_dao = new LoginDAO();
-$abbb = "aa";
-/*
-// set table
-$login_dao->setTable('tb_mem');
-$login_res = $login_dao->getLogin($mem_id, $mem_pw) ;
-req(u, login_res);
-*/
+        $login_dao = new LoginDAO();
+        $abbb = "aa";
+        /*
+        // set table
+        $login_dao->setTable('tb_mem');
+        $login_res = $login_dao->getLogin($mem_id, $mem_pw) ;
+        req(u, login_res);
+        */
 
-?>
-<HTML><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<HEAD>
-<title>로그인</title>
+
+        ?>
+        <HTML><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <HEAD>
+            <title>로그인</title>
 
     <!-- JQuery 기본셋 -->
     <link rel="stylesheet" type="text/css" href="/js/jquery/themes/smoothness/jquery-ui-1.8.13.custom.css?v=2015041001" />
     <script type="text/javascript" charset="utf-8" src="/js/jquery/jquery-1.8.3.min.js?v=20141217"></script>
     <script type="text/javascript" charset="utf-8" src="/js/jquery/jquery.form.js?v=20141217"></script>
     <script type="text/javascript" charset="utf-8" src="/js/jquery/jquery-ui-1.8.13.custom.min.js?v=20141217"></script>
-    <script type="text/javascript" charset="utf-8" src="/js/jquery/jquery.cycle.all.js?v=20141217"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/jquery/jquery.cycle.all.js?v=20141217"></script>`
     
     <!-- JQuery Datepicker -->
     <link type="text/css" rel="StyleSheet" href="/js/jquery/datepicker/jquery.datePicker.css?v=2015041001"  />
